@@ -30,7 +30,7 @@
 	"contributes": {
 		"jsonValidation": [{
 			"fileMatch": "tauri.conf.json",
-			"url": "https://gist.githubusercontent.com/lucasfernog/e945806ea3c8fb1b9aae728005cf9304/raw/0a0947f4561e6419ea43b2ee74ae897f6e31eced/schema.json"
+			"url": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/cli/tauri.js/src/types/config.schema.json"
 		}],
 		"commands": [{
 				"command": "tauri.init",
