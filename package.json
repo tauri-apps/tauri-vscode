@@ -1,5 +1,6 @@
 {
 	"name": "tauri-vscode",
+	"publisher": "tauri-apps",
 	"displayName": "Tauri",
 	"description": "Enhances the experience of Tauri apps development",
 	"icon": "./assets/icon.png",
