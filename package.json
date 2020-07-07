@@ -1,8 +1,9 @@
 {
 	"name": "tauri-vscode",
+	"publisher": "tauri-apps",
 	"displayName": "Tauri",
 	"description": "Enhances the experience of Tauri apps development",
-	"icon": "./assets/icon.png",
+	"icon": "assets/icon.png",
 	"bugs": {
 		"url": "https://github.com/tauri-apps/tauri-vscode/issues",
 		"email": "smcbreen@microsoft.com"
