@@ -28,19 +28,24 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"jsonValidation": [{
-			"fileMatch": "tauri.conf.json",
-			"url": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/cli/tauri.js/src/types/config.schema.json"
-		}],
-		"commands": [{
+		"jsonValidation": [
+			{
+				"fileMatch": "tauri.conf.json",
+				"url": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/cli/tauri.js/src/types/config.schema.json"
+			}
+		],
+		"commands": [
+			{
 				"command": "tauri.init",
 				"title": "Init",
 				"category": "Tauri"
-			}, {
+			},
+			{
 				"command": "tauri.dev",
 				"title": "Dev",
 				"category": "Tauri"
-			}, {
+			},
+			{
 				"command": "tauri.build",
 				"title": "Build",
 				"category": "Tauri"
@@ -68,12 +73,12 @@
 		"@typescript-eslint/eslint-plugin": "^2.30.0",
 		"@typescript-eslint/parser": "^2.30.0",
 		"eslint": "^6.8.0",
-		"glob": "^7.1.6",
 		"mocha": "^7.1.2",
 		"typescript": "^3.8.3",
 		"vscode-test": "^1.3.0"
 	},
 	"dependencies": {
+		"glob": "^7.1.6",
 		"run-in-terminal": "^0.0.3"
 	}
 }
