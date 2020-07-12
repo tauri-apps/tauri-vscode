@@ -28,19 +28,24 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"jsonValidation": [{
-			"fileMatch": "tauri.conf.json",
-			"url": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/cli/tauri.js/src/types/config.schema.json"
-		}],
-		"commands": [{
+		"jsonValidation": [
+			{
+				"fileMatch": "tauri.conf.json",
+				"url": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/cli/tauri.js/src/types/config.schema.json"
+			}
+		],
+		"commands": [
+			{
 				"command": "tauri.init",
 				"title": "Init",
 				"category": "Tauri"
-			}, {
+			},
+			{
 				"command": "tauri.dev",
 				"title": "Dev",
 				"category": "Tauri"
-			}, {
+			},
+			{
 				"command": "tauri.build",
 				"title": "Build",
 				"category": "Tauri"
@@ -74,6 +79,7 @@
 		"vscode-test": "1.4.0"
 	},
 	"dependencies": {
+		"glob": "^7.1.6",
 		"run-in-terminal": "^0.0.3"
 	}
 }
