@@ -1,0 +1,21 @@
+name: test
+on: [pull_request]
+
+jobs:
+  test-plugin:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [macos-latest, ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - name: install dependencies
+      run: yarn
+    - name: compile extension
+      run: yarn compile

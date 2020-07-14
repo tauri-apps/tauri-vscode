@@ -1,0 +1,15 @@
+{
+  "gitSiteUrl": "https://www.github.com/tauri-apps/tauri-vscode/",
+  "pkgManagers": {
+    "javascript": {
+      "version": true,
+      "publish": false
+    }
+  },
+  "packages": {
+    "tauri-vscode": {
+      "path": ".",
+      "manager": "javascript"
+    }
+  }
+}
