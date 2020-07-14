@@ -69,7 +69,7 @@
 		"@types/vscode": "1.46.0",
 		"@typescript-eslint/eslint-plugin": "3.6.1",
 		"@typescript-eslint/parser": "3.6.1",
-		"eslint": "6.8.0",
+		"eslint": "7.4.0",
 		"mocha": "8.0.1",
 		"typescript": "3.9.6",
 		"vscode-test": "1.4.0"
