@@ -26,7 +26,7 @@ jobs:
         uses: tauri-apps/create-pull-request@v2.8.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: release/version-updates
+          branch: covector/version-updates
           title: Apply Version Updates From Current Changes
           commit-message: "apply version updates"
           labels: "version updates"
