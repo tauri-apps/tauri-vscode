@@ -1,6 +1,8 @@
 import * as vscode from 'vscode';
 import { exec, ChildProcess } from 'child_process';
 import { runInTerminal } from 'run-in-terminal';
+import { join } from 'path';
+import { existsSync, readFileSync } from 'fs';
 const glob = require('glob');
 const path = require('path');
 const fs = require('fs');
@@ -47,32 +49,60 @@ function registerCommands(context: vscode.ExtensionContext) {
 
 function runTauriInit(): void {
   __pickProjectAndRunTauriScript(projectPath => {
-    const installCommand = fs.existsSync(path.join(projectPath, 'yarn.lock'))
-      ? 'yarn add tauri'
-      : `${__getNpmBin()} install tauri`;
+    let installCommand: string;
+    let onInstall = () => { };
+    if (__isVueCliApp(projectPath)) {
+      installCommand = 'vue add tauri';
+    } else {
+      installCommand = fs.existsSync(path.join(projectPath, 'yarn.lock'))
+        ? 'yarn add tauri'
+        : `${__getNpmBin()} install tauri`;
+      onInstall = () => {
+        __runTauriScript(['init'], { cwd: projectPath, noOutputWindow: true });
+      };
+    }
 
     const [command, ...args] = (installCommand).split(' ');
-    __runScript(command, args, projectPath).then(() => {
-      __runTauriScript(projectPath, ['init']);
-    });
+    __runScript(command, args, { cwd: projectPath, noOutputWindow: command === 'vue' }).then(onInstall);
   }, () => {
     const paths = __getNpmProjectsPaths();
     return paths.filter(p => {
-      return !(p.includes('node_modules') || fs.existsSync(path.join(p, 'src-tauri')));
+      return !fs.existsSync(path.join(p, 'src-tauri'));
     });
   });
 }
 
 function runTauriDev(): void {
-  __pickProjectAndRunTauriScript(projectPath => __runTauriScript(projectPath, ['dev']));
+  __pickProjectAndRunTauriScript(projectPath => __runTauriScript(['dev'], { cwd: projectPath }));
 }
 
 function runTauriBuild(): void {
-  __pickProjectAndRunTauriScript(projectPath => __runTauriScript(projectPath, ['build']));
+  __pickProjectAndRunTauriScript(projectPath => __runTauriScript(['build'], { cwd: projectPath }));
 }
 
 function runTauriBuildDebug(): void {
-  __pickProjectAndRunTauriScript(projectPath => __runTauriScript(projectPath, ['build', '--debug']));
+  __pickProjectAndRunTauriScript(projectPath => __runTauriScript(['build', '--debug'], { cwd: projectPath }));
+}
+
+function __isVueCliApp(cwd: string): boolean {
+  const packageJson = __getPackageJson(cwd);
+  return '@vue/cli-service' in (packageJson?.devDependencies ?? {});
+}
+
+interface PackageJson {
+  devDependencies: {
+    [name: string]: any
+  }
+}
+
+function __getPackageJson(cwd: string): PackageJson | null {
+  const packagePath = join(cwd, 'package.json');
+  if (existsSync(packagePath)) {
+    const packageStr = readFileSync(packagePath).toString();
+    return JSON.parse(packageStr) as PackageJson;
+  } else {
+    return null;
+  }
 }
 
 function __getNpmProjectsPaths(): string[] {
@@ -83,9 +113,9 @@ function __getNpmProjectsPaths(): string[] {
 
   const paths = [];
   for (const folder of folders) {
-    const npmProjectRoots = glob.sync(folder.uri.fsPath + '/**/package.json')
+    const npmProjectRoots: string[] = glob.sync(folder.uri.fsPath + '/**/package.json')
       .map((p: string) => path.dirname(p));
-    paths.push(...npmProjectRoots);
+    paths.push(...npmProjectRoots.filter(p => !p.includes('node_modules')));
   }
 
   if (paths.length === 0) {
@@ -103,9 +133,9 @@ function __getTauriProjectsPaths(): string[] {
 
   const paths = [];
   for (const folder of folders) {
-    const tauriProjectRoots = glob.sync(folder.uri.fsPath + '/**/src-tauri')
+    const tauriProjectRoots: string[] = glob.sync(folder.uri.fsPath + '/**/src-tauri')
       .map((p: string) => path.dirname(p));
-    paths.push(...tauriProjectRoots);
+    paths.push(...tauriProjectRoots.filter(p => !p.includes('node_modules')));
   }
   return paths;
 }
@@ -191,30 +221,35 @@ function __getNpmBin() {
   return vscode.workspace.getConfiguration('npm')['bin'] || 'npm';
 }
 
-function __getNpxBin() {
-  const npmBin = __getNpmBin();
-  return npmBin.slice(0, npmBin.length - 1) + 'x';
+interface RunOptions {
+  noOutputWindow?: boolean
+  cwd: string
 }
 
-function __runScript(command: string, args: string[], cwd: string) {
-  vscode.window.showInformationMessage(`Running \`${command} ${args.join(' ')}\` in ${cwd}`);
+function __runScript(command: string, args: string[], options: RunOptions) {
+  vscode.window.showInformationMessage(`Running \`${command} ${args.join(' ')}\` in ${options.cwd}`);
 
   return vscode.workspace.saveAll().then(() => {
-    if (__useTerminal()) {
+    if (__useTerminal() || options.noOutputWindow) {
       if (typeof vscode.window.createTerminal === 'function') {
-        return __runCommandInIntegratedTerminal(command, args, cwd);
+        return __runCommandInIntegratedTerminal(command, args, options.cwd);
       } else {
-        return __runCommandInTerminal(command, args, cwd);
+        return __runCommandInTerminal(command, args, options.cwd);
       }
     } else {
       outputChannel.clear();
-      return __runCommandInOutputWindow(command, args, cwd);
+      return __runCommandInOutputWindow(command, args, options.cwd);
     }
   });
 }
 
-function __runTauriScript(cwd: string, args: string[]): void {
-  __runScript(__getNpxBin(), ['tauri', ...args], cwd);
+function __runTauriScript(args: string[], options: RunOptions): void {
+  if (__isVueCliApp(options.cwd)) {
+    const [cmd, ...cmgArgs] = args;
+    __runScript(__getNpmBin(), ['run', `tauri:${cmd === 'dev' ? 'serve' : cmd}`, ...cmgArgs], options);
+  } else {
+    __runScript(__getNpmBin(), ['run', 'tauri', ...args], options);
+  }
 }
 
 function __pickProjectAndRunTauriScript(runner: (projectPath: string) => void, getProjectPathsFn = __getTauriProjectsPaths): void {
