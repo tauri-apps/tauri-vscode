@@ -75,7 +75,7 @@
     "eslint": "7.19.0",
     "mocha": "8.0.1",
     "typescript": "3.9.9",
-    "vscode-test": "1.4.0"
+    "vscode-test": "1.5.0"
   },
   "dependencies": {
     "glob": "7.1.6",
