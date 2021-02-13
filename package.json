@@ -67,15 +67,15 @@
   },
   "devDependencies": {
     "@types/glob": "7.1.3",
-    "@types/mocha": "8.0.0",
-    "@types/node": "13.13.14",
-    "@types/vscode": "1.47.0",
-    "@typescript-eslint/eslint-plugin": "3.7.0",
-    "@typescript-eslint/parser": "3.7.0",
-    "eslint": "7.5.0",
-    "mocha": "8.0.1",
+    "@types/mocha": "8.2.0",
+    "@types/node": "13.13.41",
+    "@types/vscode": "1.53.0",
+    "@typescript-eslint/eslint-plugin": "4.6.0",
+    "@typescript-eslint/parser": "4.6.0",
+    "eslint": "7.19.0",
+    "mocha": "8.3.0",
     "typescript": "4.0.5",
-    "vscode-test": "1.4.0"
+    "vscode-test": "1.5.0"
   },
   "dependencies": {
     "glob": "7.1.6",
