@@ -31,7 +31,7 @@
     "jsonValidation": [
       {
         "fileMatch": "tauri.conf.json",
-        "url": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/cli/tauri.js/src/types/config.schema.json"
+        "url": "https://github.com/tauri-apps/tauri/blob/dev/tooling/cli.rs/schema.json"
       }
     ],
     "commands": [
