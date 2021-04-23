@@ -55,8 +55,8 @@ function runTauriInit(): void {
       installCommand = 'vue add tauri';
     } else {
       installCommand = fs.existsSync(path.join(projectPath, 'yarn.lock'))
-        ? 'yarn add tauri'
-        : `${__getNpmBin()} install tauri`;
+        ? 'yarn add @tauri-apps/cli --dev'
+        : `${__getNpmBin()} install @tauri-apps/cli --save-dev`;
       onInstall = () => {
         __runTauriScript(['init'], { cwd: projectPath, noOutputWindow: true });
       };
