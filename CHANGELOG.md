@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.1.1]
+
+- Fixes the `tauri.conf.json` schema URL.
+  - [1d1d005](https://www.github.com/tauri-apps/tauri-vscode/commit/1d1d0054b4364f1ea2ff9a18ae04eb75a234cd19) fix: schema URL on 2021-04-29
+
 ## \[0.1.0]
 
 - Update to tauri beta-rc.
