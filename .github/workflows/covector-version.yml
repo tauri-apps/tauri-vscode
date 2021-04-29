@@ -21,9 +21,10 @@ jobs:
         uses: jbolda/covector/packages/action@covector-v0
         id: covector
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           command: 'version'
       - name: Create Pull Request With Versions Bumped
-        uses: tauri-apps/create-pull-request@v2.8.0
+        uses: tauri-apps/create-pull-request@v3.4.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: covector/version-updates
