@@ -22,6 +22,8 @@
   "activationEvents": [
     "workspaceContains:**/tauri.conf.json",
     "onCommand:tauri.init",
+    "onCommand:tauri.deps-install",
+    "onCommand:tauri.deps-update",
     "onCommand:tauri.dev",
     "onCommand:tauri.build",
     "onCommand:tauri.build-debug"
@@ -38,6 +40,16 @@
       {
         "command": "tauri.init",
         "title": "Init",
+        "category": "Tauri"
+      },
+      {
+        "command": "tauri.deps-install",
+        "title": "Install Missing Dependencies",
+        "category": "Tauri"
+      },
+      {
+        "command": "tauri.deps-update",
+        "title": "Update Dependencies",
         "category": "Tauri"
       },
       {
