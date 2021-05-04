@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.1.2]
+
+- Adds `deps install` and `deps update` commands.
+  - [c75323c](https://www.github.com/tauri-apps/tauri-vscode/commit/c75323c24a8b219a8d88b6170c9c79ec3e0a5588) feat: add `deps` commands on 2021-05-04
+
 ## \[0.1.1]
 
 - Fixes the `tauri.conf.json` schema URL.
