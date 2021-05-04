@@ -40,10 +40,12 @@ export function deactivate() {
 
 function registerCommands(context: vscode.ExtensionContext) {
   context.subscriptions.push(
+    vscode.commands.registerCommand('tauri.init', runTauriInit),
+    vscode.commands.registerCommand('tauri.deps-install', runTauriDepsInstall),
+    vscode.commands.registerCommand('tauri.deps-update', runTauriDepsUpdate),
     vscode.commands.registerCommand('tauri.dev', runTauriDev),
     vscode.commands.registerCommand('tauri.build', runTauriBuild),
-    vscode.commands.registerCommand('tauri.build-debug', runTauriBuildDebug),
-    vscode.commands.registerCommand('tauri.init', runTauriInit)
+    vscode.commands.registerCommand('tauri.build-debug', runTauriBuildDebug)
   );
 }
 
@@ -70,6 +72,24 @@ function runTauriInit(): void {
       return !fs.existsSync(path.join(p, 'src-tauri'));
     });
   });
+}
+
+function runTauriDepsInstall(): void {
+  const projectPaths = __getTauriProjectsPaths();
+  if (projectPaths.length === 0) {
+    vscode.window.showErrorMessage('Tauri project not found');
+    return;
+  }
+  __runTauriScript(['deps', 'install'], { cwd: projectPaths[0] });
+}
+
+function runTauriDepsUpdate(): void {
+  const projectPaths = __getTauriProjectsPaths();
+  if (projectPaths.length === 0) {
+    vscode.window.showErrorMessage('Tauri project not found');
+    return;
+  }
+  __runTauriScript(['deps', 'update'], { cwd: projectPaths[0] });
 }
 
 function runTauriDev(): void {
