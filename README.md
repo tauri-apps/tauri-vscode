@@ -10,3 +10,6 @@ It adds the `init`, `dev` and `build` commands to the `Command Palette`.
 
 The extension automatically pulls the [latest config schema](https://github.com/tauri-apps/tauri/blob/dev/tooling/cli.rs/schema.json) so VS Code can display documentation and autocomplete.
 
+# Contributing
+
+Following [the official guide](https://code.visualstudio.com/api/get-started/your-first-extension), run `yarn` to install dependencies, `yarn compile` to build your changes and press `F5` to open a new `Extension Development Host` window.
