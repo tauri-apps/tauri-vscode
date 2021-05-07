@@ -90,7 +90,7 @@
     "vscode-test": "1.5.2"
   },
   "dependencies": {
-    "glob": "7.1.6",
+    "glob": "7.1.7",
     "run-in-terminal": "^0.0.3"
   }
 }
