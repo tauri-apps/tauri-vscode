@@ -1,0 +1,15 @@
+{
+  "Create a covector change file": {
+    "prefix": [
+      "covector",
+      "---"
+    ],
+    "body": [
+      "---",
+      "\"$1\": \"$2\"",
+      "---",
+      "",
+      "$3"
+    ]
+  }
+}
