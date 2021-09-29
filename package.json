@@ -79,13 +79,13 @@
   },
   "devDependencies": {
     "@types/glob": "7.1.4",
-    "@types/mocha": "8.2.3",
+    "@types/mocha": "9.0.0",
     "@types/node": "13.13.51",
     "@types/vscode": "1.57.1",
     "@typescript-eslint/eslint-plugin": "4.22.1",
     "@typescript-eslint/parser": "4.22.1",
     "eslint": "7.32.0",
-    "mocha": "8.4.0",
+    "mocha": "9.1.2",
     "typescript": "4.3.5",
     "vscode-test": "1.5.2"
   },
