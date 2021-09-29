@@ -1,0 +1,38 @@
+{
+  "Create a tauri command": {
+    "prefix": [
+      "command",
+      "#[tauri::command]",
+      "#[command]"
+    ],
+    "body": [
+      "#[tauri::command]",
+      "async fn ${1:command_name}<R: Runtime>(app: tauri::AppHandle<R>, window: tauri::Window<R>) -> Result<(), String> {",
+      "  Ok(())",
+      "}"
+    ],
+    "description": "Communicate between the UI and the Rust code"
+  },
+  "Create a stateful tauri command": {
+    "prefix": [
+      "command",
+      "#[tauri::command]",
+      "#[command]"
+    ],
+    "body": [
+      "#[derive(Default)]",
+      "struct MyState {",
+      "  s: std::sync::Mutex<String>,",
+      "  t: std::sync::Mutex<std::collections::HashMap<String, String>>,",
+      "}",
+      "// remember to call `.manage(MyState::default())`",
+      "#[tauri::command]",
+      "async fn ${1:command_name}(state: tauri::State<'_, MyState>) -> Result<(), String> {",
+      "  *state.s.lock().unwrap() = \"new string\".into();",
+      "  state.t.lock().unwrap().insert(\"key\".into(), \"value\".into());",
+      "  Ok(())",
+      "}"
+    ],
+    "description": "Communicate between the UI and the Rust code"
+  }
+}
