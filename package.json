@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/tauri-apps/tauri-vscode.git"
   },
-  "version": "0.1.2",
+  "version": "0.1.3",
   "engines": {
     "vscode": "^1.56.0"
   },
@@ -20,7 +20,12 @@
     "Other",
     "Snippets"
   ],
-  "keywords": ["tauri", "desktop", "development", "rust"],
+  "keywords": [
+    "tauri",
+    "desktop",
+    "development",
+    "rust"
+  ],
   "activationEvents": [
     "workspaceContains:**/tauri.conf.json",
     "onCommand:tauri.init",
