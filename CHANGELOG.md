@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.1.3]
+
+- Added Tauri command and covector snippets.
+  - [f610ceb](https://www.github.com/tauri-apps/tauri-vscode/commit/f610cebcd527460f391d1bd7059d5c26f334baf7) feat: covector snippets on 2021-09-29
+
 ## \[0.1.2]
 
 - Adds `deps install` and `deps update` commands.
