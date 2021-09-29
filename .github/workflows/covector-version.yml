@@ -22,9 +22,8 @@ jobs:
         id: covector
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          command: 'version-or-publish'
+          command: 'version'
       - name: Create Pull Request With Versions Bumped
-        if: steps.covector.outputs.commandRan == 'version'
         uses: tauri-apps/create-pull-request@v3.4.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -33,10 +32,3 @@ jobs:
           commit-message: "apply version updates"
           labels: "version updates"
           body: ${{ steps.covector.outputs.change }}
-      - name: Publish Extension
-        if: steps.covector.outputs.commandRan == 'publish'
-        uses: lannonbr/vsce-action@master
-        with:
-          args: "publish -p $VSCE_TOKEN"
-        env:
-          VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
