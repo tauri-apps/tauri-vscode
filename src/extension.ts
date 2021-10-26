@@ -56,7 +56,7 @@ function runTauriInit(): void {
     if (__isVueCliApp(projectPath)) {
       installCommand = 'vue add tauri';
     } else {
-      installCommand = fs.existsSync(path.join(projectPath, 'yarn.lock'))
+      installCommand = __useYarn(projectPath)
         ? 'yarn add @tauri-apps/cli --dev'
         : `${__getNpmBin()} install @tauri-apps/cli --save-dev`;
       onInstall = () => {
@@ -237,9 +237,18 @@ function __useTerminal() {
   return vscode.workspace.getConfiguration('npm')['runInTerminal'];
 }
 
-function __getNpmBin() {
+function __useYarn(projectPath:string){
+  return fs.existsSync(path.join(projectPath, 'yarn.lock'));
+}
+
+function __getNpmBin(){
   return vscode.workspace.getConfiguration('npm')['bin'] || 'npm';
 }
+
+function __getPackageManagerBin(projectPath:string){
+  return __useYarn(projectPath) ? 'yarn' : __getNpmBin();
+}
+
 
 interface RunOptions {
   noOutputWindow?: boolean
@@ -266,9 +275,9 @@ function __runScript(command: string, args: string[], options: RunOptions) {
 function __runTauriScript(args: string[], options: RunOptions): void {
   if (__isVueCliApp(options.cwd)) {
     const [cmd, ...cmgArgs] = args;
-    __runScript(__getNpmBin(), ['run', `tauri:${cmd === 'dev' ? 'serve' : cmd}`, ...cmgArgs], options);
+    __runScript(__getPackageManagerBin(options.cwd), ['run', `tauri:${cmd === 'dev' ? 'serve' : cmd}`, ...cmgArgs], options);
   } else {
-    __runScript(__getNpmBin(), ['run', 'tauri', ...args], options);
+    __runScript(__getPackageManagerBin(options.cwd), ['run', 'tauri', ...args], options);
   }
 }
 
