@@ -237,16 +237,20 @@ function __useTerminal() {
   return vscode.workspace.getConfiguration('npm')['runInTerminal'];
 }
 
-function __useYarn(projectPath:string){
-  return fs.existsSync(path.join(projectPath, 'yarn.lock'));
+function __usePnpm(projectPath: string) {
+    return fs.existsSync(path.join(projectPath, 'pnpm-lock.yaml'));
 }
 
-function __getNpmBin(){
-  return vscode.workspace.getConfiguration('npm')['bin'] || 'npm';
+function __useYarn(projectPath: string) {
+    return fs.existsSync(path.join(projectPath, 'yarn.lock'));
 }
 
-function __getPackageManagerBin(projectPath:string){
-  return __useYarn(projectPath) ? 'yarn' : __getNpmBin();
+function __getNpmBin() {
+    return vscode.workspace.getConfiguration('npm')['bin'] || 'npm';
+}
+
+function __getPackageManagerBin(projectPath: string) {
+    return __usePnpm(projectPath) ? 'pnpm' : __useYarn(projectPath) ? 'yarn' : __getNpmBin();
 }
 
 
