@@ -39,7 +39,10 @@
   "contributes": {
     "jsonValidation": [
       {
-        "fileMatch": "tauri.conf.json",
+        "fileMatch": [
+          "tauri.conf.json",
+          "tauri.*.conf.json"
+        ],
         "url": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/tooling/cli.rs/schema.json"
       }
     ],
