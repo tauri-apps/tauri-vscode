@@ -108,7 +108,6 @@
   },
   "dependencies": {
     "glob": "7.1.7",
-    "jsonfile": "^6.1.0",
     "run-in-terminal": "^0.0.3"
   }
 }
