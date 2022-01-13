@@ -248,19 +248,19 @@ function __useTerminal() {
 }
 
 function __usePnpm(projectPath: string) {
-    return fs.existsSync(path.join(projectPath, 'pnpm-lock.yaml'));
+  return fs.existsSync(path.join(projectPath, 'pnpm-lock.yaml'));
 }
 
 function __useYarn(projectPath: string) {
-    return fs.existsSync(path.join(projectPath, 'yarn.lock'));
+  return fs.existsSync(path.join(projectPath, 'yarn.lock'));
 }
 
 function __getNpmBin() {
-    return vscode.workspace.getConfiguration('npm')['bin'] || 'npm';
+  return vscode.workspace.getConfiguration('npm')['bin'] || 'npm';
 }
 
 function __getPackageManagerBin(projectPath: string) {
-    return __usePnpm(projectPath) ? 'pnpm' : __useYarn(projectPath) ? 'yarn' : __getNpmBin();
+  return __usePnpm(projectPath) ? 'pnpm' : __useYarn(projectPath) ? 'yarn' : __getNpmBin();
 }
 
 
