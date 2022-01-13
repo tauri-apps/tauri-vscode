@@ -56,10 +56,20 @@ function runTauriInit(): void {
     if (__isVueCliApp(projectPath)) {
       installCommand = 'vue add tauri';
     } else {
-      installCommand = __useYarn(projectPath)
+      installCommand = __usePnpm(projectPath)
+        ? 'pnpm add -D @tauri-apps/cli'
+        : __useYarn(projectPath)
         ? 'yarn add @tauri-apps/cli --dev'
         : `${__getNpmBin()} install @tauri-apps/cli --save-dev`;
       onInstall = () => {
+        const packageJson = JSON.parse(fs.readFileSync(`${projectPath}/package.json`));
+        if (!packageJson.scripts) {
+          packageJson.scripts = {};
+        }
+        if (!packageJson.scripts['tauri']) {
+          packageJson.scripts['tauri'] = 'tauri';
+          fs.writeFileSync(`${projectPath}/package.json`, JSON.stringify(packageJson, null, 4));
+        }
         __runTauriScript(['init'], { cwd: projectPath, noOutputWindow: true });
       };
     }
@@ -237,16 +247,20 @@ function __useTerminal() {
   return vscode.workspace.getConfiguration('npm')['runInTerminal'];
 }
 
-function __useYarn(projectPath:string){
+function __usePnpm(projectPath: string) {
+  return fs.existsSync(path.join(projectPath, 'pnpm-lock.yaml'));
+}
+
+function __useYarn(projectPath: string) {
   return fs.existsSync(path.join(projectPath, 'yarn.lock'));
 }
 
-function __getNpmBin(){
+function __getNpmBin() {
   return vscode.workspace.getConfiguration('npm')['bin'] || 'npm';
 }
 
-function __getPackageManagerBin(projectPath:string){
-  return __useYarn(projectPath) ? 'yarn' : __getNpmBin();
+function __getPackageManagerBin(projectPath: string) {
+  return __usePnpm(projectPath) ? 'pnpm' : __useYarn(projectPath) ? 'yarn' : __getNpmBin();
 }
 
 
