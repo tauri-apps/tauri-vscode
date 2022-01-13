@@ -56,7 +56,9 @@ function runTauriInit(): void {
     if (__isVueCliApp(projectPath)) {
       installCommand = 'vue add tauri';
     } else {
-      installCommand = __useYarn(projectPath)
+      installCommand = __usePnpm(projectPath)
+        ? 'pnpm add -D @tauri-apps/cli'
+        : __useYarn(projectPath)
         ? 'yarn add @tauri-apps/cli --dev'
         : `${__getNpmBin()} install @tauri-apps/cli --save-dev`;
       onInstall = () => {
