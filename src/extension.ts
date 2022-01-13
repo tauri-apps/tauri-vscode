@@ -3,6 +3,7 @@ import { exec, ChildProcess } from 'child_process';
 import { runInTerminal } from 'run-in-terminal';
 import { join } from 'path';
 import { existsSync, readFileSync } from 'fs';
+const json = require('jsonfile');
 const glob = require('glob');
 const path = require('path');
 const fs = require('fs');
@@ -62,6 +63,14 @@ function runTauriInit(): void {
         ? 'yarn add @tauri-apps/cli --dev'
         : `${__getNpmBin()} install @tauri-apps/cli --save-dev`;
       onInstall = () => {
+        const packageJson = json.readFileSync(`${projectPath}/package.json`);
+        if (!packageJson.scripts) {
+          packageJson.scripts = {};
+        }
+        if (!packageJson.scripts['tauri']) {
+          packageJson.scripts['tauri'] = 'tauri';
+          json.writeFileSync(`${projectPath}/package.json`, packageJson, { spaces: 4 });
+        }
         __runTauriScript(['init'], { cwd: projectPath, noOutputWindow: true });
       };
     }
