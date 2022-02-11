@@ -1,5 +1,14 @@
 # Changelog
 
+## \[0.1.4]
+
+- Added support for pnpm.
+  - [6b10c02](https://www.github.com/tauri-apps/tauri-vscode/commit/6b10c02c84566ad9e34a4549059471238c105951) split changefiles on 2022-01-13
+- Automatically add `"tauri"` script to package.json after installing `@tauri-apps/cli`.
+  - [6b10c02](https://www.github.com/tauri-apps/tauri-vscode/commit/6b10c02c84566ad9e34a4549059471238c105951) split changefiles on 2022-01-13
+- Added support for platform-specific config files.
+  - [223ac46](https://www.github.com/tauri-apps/tauri-vscode/commit/223ac4611f5f52920b693de7ca0895ee654aad3d) added change file on 2022-01-13
+
 ## \[0.1.3]
 
 - Added Tauri command and covector snippets.
