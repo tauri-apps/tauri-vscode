@@ -8,7 +8,7 @@ It adds the `init`, `deps`, `dev` and `build` commands to the `Command Palette`.
 
 ## JSON validation
 
-The extension automatically pulls the [latest config schema](https://github.com/tauri-apps/tauri/blob/dev/tooling/cli.rs/schema.json) so VS Code can display documentation and autocomplete.
+The extension automatically pulls the [latest config schema](https://github.com/tauri-apps/tauri/blob/dev/tooling/cli/schema.json) so VS Code can display documentation and autocomplete.
 
 # Contributing
 
