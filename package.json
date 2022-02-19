@@ -105,7 +105,7 @@
     "@typescript-eslint/eslint-plugin": "5.12.0",
     "@typescript-eslint/parser": "5.12.0",
     "eslint": "8.9.0",
-    "mocha": "9.2.0",
+    "mocha": "9.2.1",
     "typescript": "4.5.5",
     "vscode-test": "1.6.1"
   },
