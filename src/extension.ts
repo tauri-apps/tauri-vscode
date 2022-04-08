@@ -211,6 +211,10 @@ function __runCommandInOutputWindow(command: string, args: string[], cwd: string
     const cmd = command + ' ' + args.join(' ');
     const p = exec(cmd, { cwd, env: process.env });
 
+    if (p.pid === undefined) {
+      return reject();
+    }
+
     runningProcesses.set(p.pid, { process: p, cmd: cmd });
 
     p.stderr?.on('data', (data: string) => {
@@ -220,7 +224,7 @@ function __runCommandInOutputWindow(command: string, args: string[], cwd: string
       outputChannel.append(data);
     });
     p.on('exit', (_code: number, signal: string) => {
-      runningProcesses.delete(p.pid);
+      runningProcesses.delete(p.pid!);
 
       if (signal === 'SIGTERM') {
         outputChannel.appendLine('Successfully killed process');
