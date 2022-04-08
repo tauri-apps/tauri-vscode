@@ -106,7 +106,7 @@
     "@typescript-eslint/parser": "5.18.0",
     "eslint": "8.10.0",
     "mocha": "9.2.1",
-    "typescript": "4.5.5",
+    "typescript": "4.6.3",
     "vscode-test": "1.6.1"
   },
   "dependencies": {
