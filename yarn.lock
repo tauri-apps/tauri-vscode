@@ -90,10 +90,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.12.tgz#0d4557fd3b94497d793efd4e7d92df2f83b4ef24"
   integrity sha512-q4jlIR71hUpWTnGhXWcakgkZeHa3CCjcQcnuzU8M891BAWA2jHiziiWEPEkdS5pFsz7H9HJiy8BrK7tBRNrY7A==
 
-"@types/vscode@1.61.0":
-  version "1.61.0"
-  resolved "https://registry.yarnpkg.com/@types/vscode/-/vscode-1.61.0.tgz#c54335b6f84c19c69b1435b17cc0ce3b2cecfeec"
-  integrity sha512-9k5Nwq45hkRwdfCFY+eKXeQQSbPoA114mF7U/4uJXRBJeGIO7MuJdhF1PnaDN+lllL9iKGQtd6FFXShBXMNaFg==
+"@types/vscode@1.66.0":
+  version "1.66.0"
+  resolved "https://registry.yarnpkg.com/@types/vscode/-/vscode-1.66.0.tgz#e90e1308ad103f2bd31b72c17b8031b4cec0713d"
+  integrity sha512-ZfJck4M7nrGasfs4A4YbUoxis3Vu24cETw3DERsNYtDZmYSYtk6ljKexKFKhImO/ZmY6ZMsmegu2FPkXoUFImA==
 
 "@typescript-eslint/eslint-plugin@5.18.0":
   version "5.18.0"
