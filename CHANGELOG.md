@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.1.5]
+
+- Update the extension icon.
+  - [f681c06](https://www.github.com/tauri-apps/tauri-vscode/commit/f681c0648dc8b830a38cd6cf33527bd11c825ebf) Update tauri icon ([#153](https://www.github.com/tauri-apps/tauri-vscode/pull/153)) on 2022-06-19
+
 ## \[0.1.4]
 
 - Added support for pnpm.
