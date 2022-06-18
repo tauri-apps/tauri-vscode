@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.1.6]
+
+- Update schema fileMateches to detect `.json5`
+  - [a4e5721](https://www.github.com/tauri-apps/tauri-vscode/commit/a4e5721ef4212ba7c4bc4f7aa99bc8c8820b8d40) feat: detect schema on `.json5` conf on 2022-06-18
+
 ## \[0.1.5]
 
 - Update the extension icon.
