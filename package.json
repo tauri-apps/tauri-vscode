@@ -1,116 +1,116 @@
 {
-    "name": "tauri-vscode",
-    "publisher": "tauri-apps",
-    "displayName": "Tauri",
-    "description": "Enhances the experience of Tauri apps development",
-    "icon": "assets/icon.png",
-    "bugs": {
-        "url": "https://github.com/tauri-apps/tauri-vscode/issues",
-        "email": "smcbreen@microsoft.com"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/tauri-apps/tauri-vscode.git"
-    },
-    "version": "0.1.4",
-    "engines": {
-        "vscode": "^1.66.0"
-    },
-    "categories": [
-        "Other",
-        "Snippets"
-    ],
-    "keywords": [
-        "tauri",
-        "desktop",
-        "development",
-        "rust"
-    ],
-    "activationEvents": [
-        "workspaceContains:**/tauri.conf.json",
-        "onCommand:tauri.init",
-        "onCommand:tauri.deps-install",
-        "onCommand:tauri.deps-update",
-        "onCommand:tauri.dev",
-        "onCommand:tauri.build",
-        "onCommand:tauri.build-debug"
-    ],
-    "main": "./out/extension.js",
-    "contributes": {
-        "jsonValidation": [
-            {
-                "fileMatch": [
-                    "tauri.conf.json",
-                    "tauri.*.conf.json"
-                ],
-                "url": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/tooling/cli/schema.json"
-            }
+  "name": "tauri-vscode",
+  "publisher": "tauri-apps",
+  "displayName": "Tauri",
+  "description": "Enhances the experience of Tauri apps development",
+  "icon": "assets/icon.png",
+  "bugs": {
+    "url": "https://github.com/tauri-apps/tauri-vscode/issues",
+    "email": "smcbreen@microsoft.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tauri-apps/tauri-vscode.git"
+  },
+  "version": "0.1.5",
+  "engines": {
+    "vscode": "^1.66.0"
+  },
+  "categories": [
+    "Other",
+    "Snippets"
+  ],
+  "keywords": [
+    "tauri",
+    "desktop",
+    "development",
+    "rust"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/tauri.conf.json",
+    "onCommand:tauri.init",
+    "onCommand:tauri.deps-install",
+    "onCommand:tauri.deps-update",
+    "onCommand:tauri.dev",
+    "onCommand:tauri.build",
+    "onCommand:tauri.build-debug"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "jsonValidation": [
+      {
+        "fileMatch": [
+          "tauri.conf.json",
+          "tauri.*.conf.json"
         ],
-        "commands": [
-            {
-                "command": "tauri.init",
-                "title": "Init",
-                "category": "Tauri"
-            },
-            {
-                "command": "tauri.deps-install",
-                "title": "Install Missing Dependencies",
-                "category": "Tauri"
-            },
-            {
-                "command": "tauri.deps-update",
-                "title": "Update Dependencies",
-                "category": "Tauri"
-            },
-            {
-                "command": "tauri.dev",
-                "title": "Dev",
-                "category": "Tauri"
-            },
-            {
-                "command": "tauri.build",
-                "title": "Build",
-                "category": "Tauri"
-            },
-            {
-                "command": "tauri.build-debug",
-                "title": "Build with debug",
-                "category": "Tauri"
-            }
-        ],
-        "snippets": [
-            {
-                "language": "rust",
-                "path": "./snippets/rust.json"
-            },
-            {
-                "language": "markdown",
-                "path": "./snippets/markdown.json"
-            }
-        ]
-    },
-    "scripts": {
-        "vscode:prepublish": "yarn run compile",
-        "compile": "tsc -p ./",
-        "lint": "eslint src --ext ts",
-        "watch": "tsc -watch -p ./",
-        "pretest": "yarn run compile && yarn run lint",
-        "test": "node ./out/test/runTest.js"
-    },
-    "devDependencies": {
-        "@types/glob": "7.2.0",
-        "@types/mocha": "9.1.1",
-        "@types/node": "16.11.41",
-        "@types/vscode": "1.68.0",
-        "@typescript-eslint/eslint-plugin": "5.28.0",
-        "@typescript-eslint/parser": "5.28.0",
-        "@vscode/test-electron": "2.1.4",
-        "eslint": "8.18.0",
-        "mocha": "10.0.0",
-        "typescript": "4.7.4"
-    },
-    "dependencies": {
-        "glob": "8.0.3",
-        "run-in-terminal": "^0.0.3"
-    }
+        "url": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/tooling/cli/schema.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "tauri.init",
+        "title": "Init",
+        "category": "Tauri"
+      },
+      {
+        "command": "tauri.deps-install",
+        "title": "Install Missing Dependencies",
+        "category": "Tauri"
+      },
+      {
+        "command": "tauri.deps-update",
+        "title": "Update Dependencies",
+        "category": "Tauri"
+      },
+      {
+        "command": "tauri.dev",
+        "title": "Dev",
+        "category": "Tauri"
+      },
+      {
+        "command": "tauri.build",
+        "title": "Build",
+        "category": "Tauri"
+      },
+      {
+        "command": "tauri.build-debug",
+        "title": "Build with debug",
+        "category": "Tauri"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "rust",
+        "path": "./snippets/rust.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/markdown.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint src --ext ts",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "7.2.0",
+    "@types/mocha": "9.1.1",
+    "@types/node": "16.11.41",
+    "@types/vscode": "1.68.0",
+    "@typescript-eslint/eslint-plugin": "5.28.0",
+    "@typescript-eslint/parser": "5.28.0",
+    "@vscode/test-electron": "2.1.4",
+    "eslint": "8.18.0",
+    "mocha": "10.0.0",
+    "typescript": "4.7.4"
+  },
+  "dependencies": {
+    "glob": "8.0.3",
+    "run-in-terminal": "^0.0.3"
+  }
 }
