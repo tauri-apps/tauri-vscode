@@ -41,7 +41,9 @@
       {
         "fileMatch": [
           "tauri.conf.json",
-          "tauri.*.conf.json"
+          "tauri.conf.json5",
+          "tauri.*.conf.json",
+          "tauri.*.conf.json5"
         ],
         "url": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/tooling/cli/schema.json"
       }
@@ -101,7 +103,7 @@
     "@types/glob": "7.2.0",
     "@types/mocha": "9.1.1",
     "@types/node": "16.11.41",
-    "@types/vscode": "1.68.0",
+    "@types/vscode": "1.66.0",
     "@typescript-eslint/eslint-plugin": "5.28.0",
     "@typescript-eslint/parser": "5.28.0",
     "@vscode/test-electron": "2.1.4",
