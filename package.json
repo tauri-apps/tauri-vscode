@@ -110,7 +110,7 @@
         "typescript": "4.6.3"
     },
     "dependencies": {
-        "glob": "8.0.1",
+        "glob": "8.0.3",
         "run-in-terminal": "^0.0.3"
     }
 }
