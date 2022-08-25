@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/tauri-apps/tauri-vscode.git"
   },
-  "version": "0.1.6",
+  "version": "0.2.6",
   "engines": {
     "vscode": "^1.66.0"
   },
@@ -33,7 +33,8 @@
     "onCommand:tauri.deps-update",
     "onCommand:tauri.dev",
     "onCommand:tauri.build",
-    "onCommand:tauri.build-debug"
+    "onCommand:tauri.build-debug",
+    "onFileSystem:tauri"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -45,7 +46,7 @@
           "tauri.*.conf.json",
           "tauri.*.conf.json5"
         ],
-        "url": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/tooling/cli/schema.json"
+        "url": "tauri://schemas/config.json"
       }
     ],
     "commands": [
@@ -95,6 +96,7 @@
     "vscode:prepublish": "yarn run compile",
     "compile": "tsc -p ./",
     "lint": "eslint src --ext ts",
+    "format": "prettier ./**/*.{json,ts,js} -w --ignore-path .gitignore",
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "test": "node ./out/test/runTest.js"
@@ -109,9 +111,12 @@
     "@vscode/test-electron": "2.1.4",
     "eslint": "8.18.0",
     "mocha": "10.0.0",
+    "prettier": "^2.7.1",
     "typescript": "4.7.4"
   },
   "dependencies": {
+    "@types/semver": "^7.3.12",
+    "axios": "^0.27.2",
     "glob": "8.0.3",
     "run-in-terminal": "^0.0.3"
   }

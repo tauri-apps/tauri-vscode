@@ -3,7 +3,7 @@
   "pkgManagers": {
     "javascript": {
       "version": true,
-      "publish": false
+      "publish": []
     }
   },
   "packages": {

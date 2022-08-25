@@ -1,10 +1,6 @@
 {
   "Create a tauri command": {
-    "prefix": [
-      "command",
-      "#[tauri::command]",
-      "#[command]"
-    ],
+    "prefix": ["command", "#[tauri::command]", "#[command]"],
     "body": [
       "#[tauri::command]",
       "async fn ${1:command_name}<R: Runtime>(app: tauri::AppHandle<R>, window: tauri::Window<R>) -> Result<(), String> {",
@@ -14,11 +10,7 @@
     "description": "Communicate between the UI and the Rust code"
   },
   "Create a stateful tauri command": {
-    "prefix": [
-      "command",
-      "#[tauri::command]",
-      "#[command]"
-    ],
+    "prefix": ["command", "#[tauri::command]", "#[command]"],
     "body": [
       "#[derive(Default)]",
       "struct MyState {",
