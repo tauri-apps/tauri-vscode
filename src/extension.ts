@@ -59,12 +59,12 @@ function registerSchemasHandler(context: vscode.ExtensionContext) {
       async provideTextDocumentContent(uri: vscode.Uri): Promise<string> {
         if (uri.authority === 'schemas' && uri.path === '/config.json') {
           // get schema form local file in node_modules
-          const schemaFile = (
-            await vscode.workspace.findFiles(
-              '**/node_modules/@tauri-apps/cli/schema.json'
-            )
-          )[0];
-          if (schemaFile) return readFileSync(schemaFile.fsPath, 'utf-8');
+          // const schemaFile = (
+          //   await vscode.workspace.findFiles(
+          //     '**/node_modules/@tauri-apps/cli/schema.json'
+          //   )
+          // )[0];
+          // if (schemaFile) return readFileSync(schemaFile.fsPath, 'utf-8');
 
           const getSchemaFromRelease = async (version: string) => {
             const res = await axios.get(
@@ -73,29 +73,44 @@ function registerSchemasHandler(context: vscode.ExtensionContext) {
             return JSON.stringify(res.data);
           };
 
-          // get schema form github release based on cli version in package.json
-          const packageJsonPath = (
-            await vscode.workspace.findFiles('**/package.json')
-          )[0];
-          if (packageJsonPath) {
-            const pkgJson = __getPackageJson(packageJsonPath.fsPath, true);
-            const versionStr = (pkgJson?.devDependencies ??
-              pkgJson?.dependencies ??
-              {})['@tauri-apps/cli'];
-            const matches =
-              /(\^|\~?)((\d|x|\*)+\.(\d|x|\*)+\.(\d|x|\*)+(-[a-zA-Z-0-9]*(.[0-9]+))*)/g.exec(
-                versionStr
-              );
-            if (matches && matches[2]) return getSchemaFromRelease(matches[2]);
-          }
+          // // get schema form github release based on cli version in package.json
+          // const packageJsonPath = (
+          //   await vscode.workspace.findFiles('**/package.json')
+          // )[0];
+          // if (packageJsonPath) {
+          //   const pkgJson = __getPackageJson(packageJsonPath.fsPath, true);
+          //   const versionStr = (pkgJson?.devDependencies ??
+          //     pkgJson?.dependencies ??
+          //     {})['@tauri-apps/cli'];
+          //   const matches =
+          //     /(\^|\~?)((\d|x|\*)+\.(\d|x|\*)+\.(\d|x|\*)+(-[a-zA-Z-0-9]*(.[0-9]+))*)/g.exec(
+          //       versionStr
+          //     );
+          //   if (matches && matches[2]) return getSchemaFromRelease(matches[2]);
+          // }
 
-          // get schema form github release based on cargo tauri-cli version
-          const versionStr = execSync('cargo tauri --version').toString();
-          const matches =
-            /((\d|x|\*)+\.(\d|x|\*)+\.(\d|x|\*)+(-[a-zA-Z-0-9]*(.[0-9]+))*)/g.exec(
-              versionStr
-            );
-          if (matches && matches[1]) return getSchemaFromRelease(matches[1]);
+          // // get schema form github release based on cargo tauri-cli version
+          // const versionStr = execSync('cargo tauri --version').toString();
+          // const matches =
+          //   /((\d|x|\*)+\.(\d|x|\*)+\.(\d|x|\*)+(-[a-zA-Z-0-9]*(.[0-9]+))*)/g.exec(
+          //     versionStr
+          //   );
+          // if (matches && matches[1]) return getSchemaFromRelease(matches[1]);
+
+          // fallback to latest release
+          let res = await axios.get(
+            `https://api.github.com/repos/tauri-apps/tauri/releases`
+          );
+          let tag_name = (res.data as Array<{ tag_name: string }>).find((e) =>
+            e.tag_name.startsWith('cli.rs-v')
+          )?.tag_name;
+          if (tag_name) {
+            const matches =
+              /((\d|x|\*)+\.(\d|x|\*)+\.(\d|x|\*)+(-[a-zA-Z-0-9]*(.[0-9]+))*)/g.exec(
+                tag_name
+              );
+            if (matches && matches[1]) return getSchemaFromRelease(matches[1]);
+          }
         }
 
         return '';

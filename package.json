@@ -119,5 +119,11 @@
     "axios": "^0.27.2",
     "glob": "8.0.3",
     "run-in-terminal": "^0.0.3"
+  },
+  "__metadata": {
+    "id": "53763e89-ec31-4d0c-b220-f714761180e5",
+    "publisherDisplayName": "Tauri",
+    "publisherId": "1647447c-0980-42c6-9fc3-db7ff8698d89",
+    "isPreReleaseVersion": false
   }
 }
