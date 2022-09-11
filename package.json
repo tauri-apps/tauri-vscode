@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/tauri-apps/tauri-vscode.git"
   },
-  "version": "0.2.6",
+  "version": "0.1.7",
   "engines": {
     "vscode": "^1.66.0"
   },
@@ -102,17 +102,17 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/glob": "7.2.0",
+    "@types/glob": "8.0.0",
     "@types/mocha": "9.1.1",
-    "@types/node": "16.11.41",
+    "@types/node": "16.11.58",
     "@types/vscode": "1.66.0",
-    "@typescript-eslint/eslint-plugin": "5.28.0",
-    "@typescript-eslint/parser": "5.28.0",
-    "@vscode/test-electron": "2.1.4",
-    "eslint": "8.18.0",
+    "@typescript-eslint/eslint-plugin": "5.36.2",
+    "@typescript-eslint/parser": "5.36.2",
+    "@vscode/test-electron": "2.1.5",
+    "eslint": "8.23.0",
     "mocha": "10.0.0",
     "prettier": "^2.7.1",
-    "typescript": "4.7.4"
+    "typescript": "4.8.3"
   },
   "dependencies": {
     "@types/semver": "^7.3.12",
@@ -120,10 +120,7 @@
     "glob": "8.0.3",
     "run-in-terminal": "^0.0.3"
   },
-  "__metadata": {
-    "id": "53763e89-ec31-4d0c-b220-f714761180e5",
-    "publisherDisplayName": "Tauri",
-    "publisherId": "1647447c-0980-42c6-9fc3-db7ff8698d89",
-    "isPreReleaseVersion": false
+  "resolutions": {
+    "brace-expansion": "^2.0.1"
   }
 }

@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.1.7]
+
+- Fix dependency resolution and glob usage. Fixes "command not found" errors.
+  - [0e314cc](https://www.github.com/tauri-apps/tauri-vscode/commit/0e314cc2581adca626b5f804ef981ede427bfb48) fix: Manual brace-expansion resolution. Fix glob usage for glob@v8. Closes [#163](https://www.github.com/tauri-apps/tauri-vscode/pull/163) ([#169](https://www.github.com/tauri-apps/tauri-vscode/pull/169)) on 2022-09-11
+
 ## \[0.1.6]
 
 - Update schema fileMateches to detect `.json5`
