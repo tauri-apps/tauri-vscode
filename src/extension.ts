@@ -59,43 +59,43 @@ function registerSchemasHandler(context: vscode.ExtensionContext) {
       async provideTextDocumentContent(uri: vscode.Uri): Promise<string> {
         if (uri.authority === 'schemas' && uri.path === '/config.json') {
           // get schema form local file in node_modules
-          // const schemaFile = (
-          //   await vscode.workspace.findFiles(
-          //     '**/node_modules/@tauri-apps/cli/schema.json'
-          //   )
-          // )[0];
-          // if (schemaFile) return readFileSync(schemaFile.fsPath, 'utf-8');
+          const schemaFile = (
+            await vscode.workspace.findFiles(
+              '**/node_modules/@tauri-apps/cli/schema.json'
+            )
+          )[0];
+          if (schemaFile) return readFileSync(schemaFile.fsPath, 'utf-8');
 
-          const getSchemaFromRelease = async (version: string) => {
+          async function getSchemaFromRelease(version: string) {
             const res = await axios.get(
               `https://github.com/tauri-apps/tauri/releases/download/cli.rs-v${version}/schema.json`
             );
             return JSON.stringify(res.data);
-          };
+          }
 
-          // // get schema form github release based on cli version in package.json
-          // const packageJsonPath = (
-          //   await vscode.workspace.findFiles('**/package.json')
-          // )[0];
-          // if (packageJsonPath) {
-          //   const pkgJson = __getPackageJson(packageJsonPath.fsPath, true);
-          //   const versionStr = (pkgJson?.devDependencies ??
-          //     pkgJson?.dependencies ??
-          //     {})['@tauri-apps/cli'];
-          //   const matches =
-          //     /(\^|\~?)((\d|x|\*)+\.(\d|x|\*)+\.(\d|x|\*)+(-[a-zA-Z-0-9]*(.[0-9]+))*)/g.exec(
-          //       versionStr
-          //     );
-          //   if (matches && matches[2]) return getSchemaFromRelease(matches[2]);
-          // }
+          // get schema form github release based on cli version in package.json
+          const packageJsonPath = (
+            await vscode.workspace.findFiles('**/package.json')
+          )[0];
+          if (packageJsonPath) {
+            const pkgJson = __getPackageJson(packageJsonPath.fsPath, true);
+            const versionStr = (pkgJson?.devDependencies ??
+              pkgJson?.dependencies ??
+              {})['@tauri-apps/cli'];
+            const matches =
+              /(\^|\~?)((\d|x|\*)+\.(\d|x|\*)+\.(\d|x|\*)+(-[a-zA-Z-0-9]*(.[0-9]+))*)/g.exec(
+                versionStr
+              );
+            if (matches && matches[2]) return getSchemaFromRelease(matches[2]);
+          }
 
-          // // get schema form github release based on cargo tauri-cli version
-          // const versionStr = execSync('cargo tauri --version').toString();
-          // const matches =
-          //   /((\d|x|\*)+\.(\d|x|\*)+\.(\d|x|\*)+(-[a-zA-Z-0-9]*(.[0-9]+))*)/g.exec(
-          //     versionStr
-          //   );
-          // if (matches && matches[1]) return getSchemaFromRelease(matches[1]);
+          // get schema form github release based on cargo tauri-cli version
+          const versionStr = execSync('cargo tauri --version').toString();
+          const matches =
+            /((\d|x|\*)+\.(\d|x|\*)+\.(\d|x|\*)+(-[a-zA-Z-0-9]*(.[0-9]+))*)/g.exec(
+              versionStr
+            );
+          if (matches && matches[1]) return getSchemaFromRelease(matches[1]);
 
           // fallback to latest release
           let res = await axios.get(
@@ -218,7 +218,8 @@ function __getNpmProjectsPaths(): string[] {
 
   const paths = [];
   for (const folder of folders) {
-    const npmProjectRoots: string[] = glob.sync(folder.uri.fsPath.split('\\').join('/') + '/**/package.json')
+    const npmProjectRoots: string[] = glob
+      .sync(folder.uri.fsPath.split('\\').join('/') + '/**/package.json')
       .map((p: string) => path.dirname(p));
     paths.push(...npmProjectRoots.filter((p) => !p.includes('node_modules')));
   }
@@ -238,7 +239,8 @@ function __getTauriProjectsPaths(): string[] {
 
   const paths = [];
   for (const folder of folders) {
-    const tauriProjectRoots: string[] = glob.sync(folder.uri.fsPath.split('\\').join('/') + '/**/src-tauri')
+    const tauriProjectRoots: string[] = glob
+      .sync(folder.uri.fsPath.split('\\').join('/') + '/**/src-tauri')
       .map((p: string) => path.dirname(p));
     paths.push(...tauriProjectRoots.filter((p) => !p.includes('node_modules')));
   }
