@@ -143,7 +143,7 @@ function __getNpmProjectsPaths(): string[] {
 
   const paths = [];
   for (const folder of folders) {
-    const npmProjectRoots: string[] = glob.sync(folder.uri.fsPath + '/**/package.json')
+    const npmProjectRoots: string[] = glob.sync(folder.uri.fsPath.split('\\').join('/') + '/**/package.json')
       .map((p: string) => path.dirname(p));
     paths.push(...npmProjectRoots.filter(p => !p.includes('node_modules')));
   }
@@ -163,7 +163,7 @@ function __getTauriProjectsPaths(): string[] {
 
   const paths = [];
   for (const folder of folders) {
-    const tauriProjectRoots: string[] = glob.sync(folder.uri.fsPath + '/**/src-tauri')
+    const tauriProjectRoots: string[] = glob.sync(folder.uri.fsPath.split('\\').join('/') + '/**/src-tauri')
       .map((p: string) => path.dirname(p));
     paths.push(...tauriProjectRoots.filter(p => !p.includes('node_modules')));
   }
