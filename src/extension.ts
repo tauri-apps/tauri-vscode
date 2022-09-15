@@ -68,7 +68,7 @@ function registerSchemasHandler(context: vscode.ExtensionContext) {
 
           async function getSchemaFromRelease(version: string) {
             const res = await axios.get(
-              `https://github.com/tauri-apps/tauri/releases/download/cli.rs-v${version}/schema.json`
+              `https://github.com/tauri-apps/tauri/releases/download/tauri-build-v${version}/schema.json`
             );
             return JSON.stringify(res.data);
           }
