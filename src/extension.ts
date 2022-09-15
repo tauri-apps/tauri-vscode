@@ -70,7 +70,7 @@ function registerSchemasHandler(context: vscode.ExtensionContext) {
             const res = await axios.get(
               `https://github.com/tauri-apps/tauri/releases/download/tauri-build-v${version}/schema.json`
             );
-            return JSON.stringify(res.data);
+            return res.status == 200 ? JSON.stringify(res.data) : null;
           }
 
           // get schema form github release based on tauri-build version in Cargo.lock
@@ -83,7 +83,10 @@ function registerSchemasHandler(context: vscode.ExtensionContext) {
               /\[\[package\]\]\nname = "tauri-build"\nversion = "(.*)"/g.exec(
                 cargoLock
               );
-            if (matches && matches[1]) return getSchemaFromRelease(matches[1]);
+            if (matches && matches[1]) {
+              const schema = await getSchemaFromRelease(matches[1]);
+              if (schema) return schema;
+            }
           }
 
           // get schema form github release based on tauri-build version in Cargo.toml
@@ -111,8 +114,10 @@ function registerSchemasHandler(context: vscode.ExtensionContext) {
               /\[.*tauri-build\][\s\S.]*version = "(.*)"\n/g,
             ]) {
               const matches = regex.exec(cargoToml);
-              if (matches && matches[1])
-                return getSchemaFromRelease(matches[1]);
+              if (matches && matches[1]) {
+                const schema = await getSchemaFromRelease(matches[1]);
+                if (schema) return schema;
+              }
             }
           }
 
@@ -128,7 +133,10 @@ function registerSchemasHandler(context: vscode.ExtensionContext) {
               /((\d|x|\*)+\.(\d|x|\*)+\.(\d|x|\*)+(-[a-zA-Z-0-9]*(.[0-9]+))*)/g.exec(
                 tag_name
               );
-            if (matches && matches[1]) return getSchemaFromRelease(matches[1]);
+            if (matches && matches[1]) {
+              const schema = await getSchemaFromRelease(matches[1]);
+              if (schema) return schema;
+            }
           }
         }
 
