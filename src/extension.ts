@@ -73,36 +73,55 @@ function registerSchemasHandler(context: vscode.ExtensionContext) {
             return JSON.stringify(res.data);
           }
 
-          // get schema form github release based on cli version in package.json
-          const packageJsonPath = (
-            await vscode.workspace.findFiles('**/package.json')
+          // get schema form github release based on tauri-build version in Cargo.lock
+          const cargoLockPath = (
+            await vscode.workspace.findFiles('**/Cargo.lock')
           )[0];
-          if (packageJsonPath) {
-            const pkgJson = __getPackageJson(packageJsonPath.fsPath, true);
-            const versionStr = (pkgJson?.devDependencies ??
-              pkgJson?.dependencies ??
-              {})['@tauri-apps/cli'];
+          if (cargoLockPath) {
+            const cargoLock = readFileSync(cargoLockPath.fsPath, 'utf-8');
             const matches =
-              /(\^|\~?)((\d|x|\*)+\.(\d|x|\*)+\.(\d|x|\*)+(-[a-zA-Z-0-9]*(.[0-9]+))*)/g.exec(
-                versionStr
+              /\[\[package\]\]\nname = "tauri-build"\nversion = "(.*)"/g.exec(
+                cargoLock
               );
-            if (matches && matches[2]) return getSchemaFromRelease(matches[2]);
+            if (matches && matches[1]) return getSchemaFromRelease(matches[1]);
           }
 
-          // get schema form github release based on cargo tauri-cli version
-          const versionStr = execSync('cargo tauri --version').toString();
-          const matches =
-            /((\d|x|\*)+\.(\d|x|\*)+\.(\d|x|\*)+(-[a-zA-Z-0-9]*(.[0-9]+))*)/g.exec(
-              versionStr
-            );
-          if (matches && matches[1]) return getSchemaFromRelease(matches[1]);
+          // get schema form github release based on tauri-build version in Cargo.toml
+          const cargoTomlPath = (
+            await vscode.workspace.findFiles('**/Cargo.toml')
+          )[0];
+          if (cargoTomlPath) {
+            const cargoToml = readFileSync(cargoTomlPath.fsPath, 'utf-8');
+
+            for (const regex of [
+              // specifying a dependency in Cargo.toml can be done in 4 ways
+              // 1st, tauri-build = "1.0.2"
+              /tauri-build *= *"(.*)"/g,
+              // 2nd, tauri-build = { version = "1.0.2" }
+              /tauri-build *= *{.*version = "(.*)".*}\n/g,
+              // 3rd,
+              // tauri-build = { features = [
+              //    "f1",
+              //    "f2"
+              //   ], version = "1.0.2" }
+              /tauri-build *= *{[\s\S.]*version = "(.*)"[\s\S.]*}\n/g,
+              // 4th,
+              // [dependencies.tauri-build]
+              // \n version = "1.0.2"
+              /\[.*tauri-build\][\s\S.]*version = "(.*)"\n/g,
+            ]) {
+              const matches = regex.exec(cargoToml);
+              if (matches && matches[1])
+                return getSchemaFromRelease(matches[1]);
+            }
+          }
 
           // fallback to latest release
           let res = await axios.get(
             `https://api.github.com/repos/tauri-apps/tauri/releases`
           );
           let tag_name = (res.data as Array<{ tag_name: string }>).find((e) =>
-            e.tag_name.startsWith('cli.rs-v')
+            e.tag_name.startsWith('tauri-build-v')
           )?.tag_name;
           if (tag_name) {
             const matches =
@@ -200,8 +219,8 @@ interface PackageJson {
   };
 }
 
-function __getPackageJson(path: string, full = false): PackageJson | null {
-  const packagePath = full ? path : join(path, 'package.json');
+function __getPackageJson(path: string): PackageJson | null {
+  const packagePath = join(path, 'package.json');
   if (existsSync(packagePath)) {
     const packageStr = readFileSync(packagePath).toString();
     return JSON.parse(packageStr) as PackageJson;
