@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { exec, ChildProcess, execSync } from 'child_process';
+import { exec, ChildProcess } from 'child_process';
 import { runInTerminal } from 'run-in-terminal';
 import { join } from 'path';
 import { existsSync, readFileSync } from 'fs';
