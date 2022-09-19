@@ -1,3 +1,7 @@
+// Copyright 2020-2022 Tauri Programme within The Commons Conservancy
+// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: MIT
+
 import * as path from 'path';
 import * as Mocha from 'mocha';
 import * as glob from 'glob';
