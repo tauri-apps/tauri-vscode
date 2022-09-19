@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.2.0]
+
+- Provide schema for `tauri.conf.json` based on `tauri-build` version.
+  - [f85fc5c](https://www.github.com/tauri-apps/tauri-vscode/commit/f85fc5c17400f4f43dee9b04e71510a0aed4e8f4) feat: provide schema for config based on tauri-build version ([#162](https://www.github.com/tauri-apps/tauri-vscode/pull/162)) on 2022-09-19
+
 ## \[0.1.7]
 
 - Fix dependency resolution and glob usage. Fixes "command not found" errors.
