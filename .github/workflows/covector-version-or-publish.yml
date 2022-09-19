@@ -43,5 +43,5 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.TAURI_BOT_PAT }}
-          repo: tauri-apps/tauri-vscode
+          repository: tauri-apps/tauri-vscode
           event-type: publish
