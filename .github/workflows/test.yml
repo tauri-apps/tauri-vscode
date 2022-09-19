@@ -10,12 +10,12 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
     steps:
-    - uses: actions/checkout@v2
-    - name: setup node
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14
-    - name: install dependencies
-      run: yarn
-    - name: compile extension
-      run: yarn compile
+      - uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: install dependencies
+        run: yarn
+      - name: compile extension
+        run: yarn compile

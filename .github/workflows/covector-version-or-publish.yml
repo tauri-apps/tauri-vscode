@@ -22,13 +22,26 @@ jobs:
         id: covector
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          command: 'version'
+          command: 'version-or-publish'
+          createRelease: false
+
       - name: Create Pull Request With Versions Bumped
+        if: steps.covector.outputs.commandRan == 'version'
         uses: tauri-apps/create-pull-request@v3.4.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: covector/version-updates
           title: Apply Version Updates From Current Changes
-          commit-message: "apply version updates"
-          labels: "version updates"
+          commit-message: 'apply version updates'
+          labels: 'version updates'
           body: ${{ steps.covector.outputs.change }}
+
+      - name: Trigger publish.yml workflow
+        if: |
+          steps.covector.outputs.successfulPublish == 'true' &&
+          contains(steps.covector.outputs.packagesPublished, 'tauri-vscode')
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.TAURI_BOT_PAT }}
+          repo: tauri-apps/tauri-vscode
+          event-type: publish

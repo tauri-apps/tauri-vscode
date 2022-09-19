@@ -6,10 +6,12 @@ import * as vscode from 'vscode';
 // import * as myExtension from '../../extension';
 
 suite('Extension Test Suite', () => {
-	vscode.window.showInformationMessage('Start all tests.');
+  vscode.window.showInformationMessage('Start all tests.');
 
-	test('Sample test', () => {
-		vscode.window.showInformationMessage(JSON.stringify(vscode.workspace.workspaceFolders));
-		setTimeout(() => { }, 2000);
-	});
+  test('Sample test', () => {
+    vscode.window.showInformationMessage(
+      JSON.stringify(vscode.workspace.workspaceFolders)
+    );
+    setTimeout(() => {}, 2000);
+  });
 });

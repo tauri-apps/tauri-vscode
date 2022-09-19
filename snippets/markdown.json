@@ -1,9 +1,6 @@
 {
   "Create a covector change file": {
-    "prefix": [
-      "covector",
-      "---"
-    ],
+    "prefix": ["covector", "---"],
     "body": [
       "---",
       "\"${3:$WORKSPACE_NAME}\": \"${1|patch,minor,major|}\"",
