@@ -154,15 +154,15 @@ function runTauriInit(): void {
   __pickProjectAndRunTauriScript(
     (projectPath) => {
       let installCommand: string;
-      let onInstall = () => { };
+      let onInstall = () => {};
       if (__isVueCliApp(projectPath)) {
         installCommand = 'vue add tauri';
       } else {
         installCommand = __usePnpm(projectPath)
           ? 'pnpm add -D @tauri-apps/cli'
           : __useYarn(projectPath)
-            ? 'yarn add @tauri-apps/cli --dev'
-            : `${__getNpmBin()} install @tauri-apps/cli --save-dev`;
+          ? 'yarn add @tauri-apps/cli --dev'
+          : `${__getNpmBin()} install @tauri-apps/cli --save-dev`;
         onInstall = () => {
           const packageJson = JSON.parse(
             fs.readFileSync(`${projectPath}/package.json`)
@@ -387,13 +387,12 @@ function __useNpm(projectPath: string) {
 
 function __useCargo() {
   try {
-    execSync("cargo tauri --version", { windowsHide: true })
+    execSync('cargo tauri --version', { windowsHide: true });
     return true;
   } catch {
     return false;
   }
 }
-
 
 function __getNpmBin() {
   return vscode.workspace.getConfiguration('npm')['bin'] || 'npm';
@@ -407,11 +406,17 @@ function __getPackageManagerCommand(projectPath: string): string | null {
   const m = __usePnpm(projectPath)
     ? 'pnpm'
     : __useYarn(projectPath)
-      ? 'yarn'
-      : __useNpm(projectPath) ? __getNpmCommand() : __useCargo() ? "cargo" : null;
+    ? 'yarn'
+    : __useNpm(projectPath)
+    ? __getNpmCommand()
+    : __useCargo()
+    ? 'cargo'
+    : null;
 
   if (!m) {
-    vscode.window.showErrorMessage("Couldn't detect package manager for current project.")
+    vscode.window.showErrorMessage(
+      "Couldn't detect package manager for current project."
+    );
   }
 
   return m;
@@ -453,11 +458,7 @@ function __runTauriScript(args: string[], options: RunOptions): void {
       options
     );
   } else {
-    __runScript(
-      command,
-      ['tauri', ...args],
-      options
-    );
+    __runScript(command, ['tauri', ...args], options);
   }
 }
 
