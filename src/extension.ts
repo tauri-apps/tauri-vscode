@@ -399,7 +399,7 @@ function __getNpmBin() {
 }
 
 function __getNpmCommand() {
-  return __getNpmBin() + 'run';
+  return __getNpmBin() + ' run';
 }
 
 function __getPackageManagerCommand(projectPath: string): string | null {
