@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 import * as vscode from 'vscode';
-import { exec, ChildProcess } from 'child_process';
+import { exec, execSync, ChildProcess } from 'child_process';
 import { runInTerminal } from 'run-in-terminal';
 import { join } from 'path';
 import { existsSync, readFileSync } from 'fs';
@@ -381,16 +381,45 @@ function __useYarn(projectPath: string) {
   return fs.existsSync(path.join(projectPath, 'yarn.lock'));
 }
 
+function __useNpm(projectPath: string) {
+  return fs.existsSync(path.join(projectPath, 'package-lock.json'));
+}
+
+function __useCargo() {
+  try {
+    execSync('cargo tauri --version', { windowsHide: true });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function __getNpmBin() {
   return vscode.workspace.getConfiguration('npm')['bin'] || 'npm';
 }
 
-function __getPackageManagerBin(projectPath: string) {
-  return __usePnpm(projectPath)
+function __getNpmCommand() {
+  return __getNpmBin() + ' run';
+}
+
+function __getPackageManagerCommand(projectPath: string): string | null {
+  const m = __usePnpm(projectPath)
     ? 'pnpm'
     : __useYarn(projectPath)
     ? 'yarn'
-    : __getNpmBin();
+    : __useNpm(projectPath)
+    ? __getNpmCommand()
+    : __useCargo()
+    ? 'cargo'
+    : null;
+
+  if (!m) {
+    vscode.window.showErrorMessage(
+      "Couldn't detect package manager for current project."
+    );
+  }
+
+  return m;
 }
 
 interface RunOptions {
@@ -418,19 +447,18 @@ function __runScript(command: string, args: string[], options: RunOptions) {
 }
 
 function __runTauriScript(args: string[], options: RunOptions): void {
+  const command = __getPackageManagerCommand(options.cwd);
+  if (!command) return;
+
   if (__isVueCliApp(options.cwd)) {
     const [cmd, ...cmgArgs] = args;
     __runScript(
-      __getPackageManagerBin(options.cwd),
-      ['run', `tauri:${cmd === 'dev' ? 'serve' : cmd}`, ...cmgArgs],
+      command,
+      [`tauri:${cmd === 'dev' ? 'serve' : cmd}`, ...cmgArgs],
       options
     );
   } else {
-    __runScript(
-      __getPackageManagerBin(options.cwd),
-      ['run', 'tauri', ...args],
-      options
-    );
+    __runScript(command, ['tauri', ...args], options);
   }
 }
 
