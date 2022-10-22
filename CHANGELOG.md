@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.2.1]
+
+- Add support for `cargo` as a package manager.
+  - [c78393c](https://www.github.com/tauri-apps/tauri-vscode/commit/c78393cdec2911abcbd87a45f3cbc0311f9f5a1c) feat: support cargo as a package manager, closes [#187](https://www.github.com/tauri-apps/tauri-vscode/pull/187) ([#189](https://www.github.com/tauri-apps/tauri-vscode/pull/189)) on 2022-10-22
+
 ## \[0.2.0]
 
 - Provide schema for `tauri.conf.json` based on `tauri-build` version.
