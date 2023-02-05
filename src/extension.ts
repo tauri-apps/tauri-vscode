@@ -8,6 +8,9 @@ import { runInTerminal } from 'run-in-terminal';
 import { join } from 'path';
 import { existsSync, readFileSync } from 'fs';
 import axios from 'axios';
+
+import stripAnsi = require('strip-ansi');
+
 const glob = require('glob');
 const path = require('path');
 const fs = require('fs');
@@ -340,10 +343,10 @@ function __runCommandInOutputWindow(
     runningProcesses.set(p.pid, { process: p, cmd: cmd });
 
     p.stderr?.on('data', (data: string) => {
-      outputChannel.append(data);
+      outputChannel.append(stripAnsi(data));
     });
     p.stdout?.on('data', (data: string) => {
-      outputChannel.append(data);
+      outputChannel.append(stripAnsi(data));
     });
     p.on('exit', (_code: number, signal: string) => {
       runningProcesses.delete(p.pid!);
