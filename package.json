@@ -119,7 +119,8 @@
     "@types/semver": "^7.3.12",
     "axios": "^0.27.2",
     "glob": "8.0.3",
-    "run-in-terminal": "^0.0.3"
+    "run-in-terminal": "^0.0.3",
+    "strip-ansi": "^6.0.1"
   },
   "resolutions": {
     "brace-expansion": "^2.0.1"
