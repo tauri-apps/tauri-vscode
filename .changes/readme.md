@@ -10,7 +10,7 @@ Use the following format:
 
 ```md
 ---
-'tauri-log-plugin': minor
+'tauri-vscode': patch
 ---
 
 Change summary goes here
