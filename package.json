@@ -103,7 +103,7 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/glob": "8.0.0",
+    "@types/glob": "8.0.1",
     "@types/mocha": "10.0.1",
     "@types/node": "16.18.12",
     "@types/vscode": "1.66.0",
@@ -118,7 +118,7 @@
   "dependencies": {
     "@types/semver": "^7.3.12",
     "axios": "^1.0.0",
-    "glob": "8.0.3",
+    "glob": "8.1.0",
     "run-in-terminal": "^0.0.3",
     "strip-ansi": "^6.0.1"
   },
