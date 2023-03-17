@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.2.4]
+
+- Force publish
+  - [d4e429a](https://www.github.com/tauri-apps/tauri-vscode/commit/d4e429aeaa13070ab3790cdaae394fb00b8abc07) ci: use lannonbr/vsce-action for vscode on 2023-03-17
+
 ## \[0.2.3]
 
 - Downgrade `strip-ansi` package to `6.0.1` to fix crash in tauri-vscode v0.2.2
