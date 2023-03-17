@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/tauri-apps/tauri-vscode.git"
   },
-  "version": "0.2.2",
+  "version": "0.2.3",
   "engines": {
     "vscode": "^1.66.0"
   },
