@@ -9,8 +9,8 @@ import { join } from 'path';
 import { existsSync, readFileSync } from 'fs';
 import axios from 'axios';
 import { globSync } from 'glob';
-import stripAnsi from 'strip-ansi';
 
+const stripAnsi = require('strip-ansi');
 const path = require('path');
 const fs = require('fs');
 
