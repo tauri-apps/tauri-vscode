@@ -120,7 +120,7 @@
     "axios": "^1.0.0",
     "glob": "9.3.0",
     "run-in-terminal": "^0.0.3",
-    "strip-ansi": "^6.0.1"
+    "strip-ansi": "^7.0.0"
   },
   "resolutions": {
     "brace-expansion": "^2.0.1"
