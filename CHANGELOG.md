@@ -1,5 +1,12 @@
 # Changelog
 
+## \[0.2.5]
+
+- Force publish
+  - [95b10ad](https://www.github.com/tauri-apps/tauri-vscode/commit/95b10ad21986f217e3537ab4e7133c60c1f5853a) ci: force publish on 2023-03-17
+  - [3d9b9c0](https://www.github.com/tauri-apps/tauri-vscode/commit/3d9b9c0e501be035b5783d34e09746cf38daad79) Apply Version Updates From Current Changes ([#214](https://www.github.com/tauri-apps/tauri-vscode/pull/214)) on 2023-03-17
+  - [0b98f92](https://www.github.com/tauri-apps/tauri-vscode/commit/0b98f92e38c91df2682a2bd7e133f4f866d6f6b7) chore: force another publish on 2023-03-17
+
 ## \[0.2.4]
 
 - Force Publish
