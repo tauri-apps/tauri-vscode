@@ -77,7 +77,7 @@ function registerSchemasHandler(context: vscode.ExtensionContext) {
             const res = await axios.get(
               `https://github.com/tauri-apps/tauri/releases/download/tauri-build-v${version}/schema.json`
             );
-            return res.status === 200 ? JSON.stringify(res.data) : null;
+            return res.status == 200 ? JSON.stringify(res.data) : null;
           }
 
           // get schema form github release based on tauri-build version in Cargo.lock
