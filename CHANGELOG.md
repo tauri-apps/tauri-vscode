@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.2.4]
+
+- Force Publish
+  - [95b10ad](https://www.github.com/tauri-apps/tauri-vscode/commit/95b10ad21986f217e3537ab4e7133c60c1f5853a) ci: force publish on 2023-03-17
+
 ## \[0.2.2]
 
 - use stripAnsi to remove ansi colors in output
