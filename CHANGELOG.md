@@ -1,5 +1,12 @@
 # Changelog
 
+## \[0.2.3]
+
+- Downgrade `strip-ansi` package to `6.0.1` to fix crash in tauri-vscode v0.2.2
+  - [2a0af16](https://www.github.com/tauri-apps/tauri-vscode/commit/2a0af165bf83e9001ceb3154706b89cff8605960) fix: use stripAnsi to remove ansi colors in output ([#196](https://www.github.com/tauri-apps/tauri-vscode/pull/196)) on 2023-02-06
+  - [710da2c](https://www.github.com/tauri-apps/tauri-vscode/commit/710da2c646ec2629ebf226062bdc5114fc9e2d6a) Apply Version Updates From Current Changes ([#197](https://www.github.com/tauri-apps/tauri-vscode/pull/197)) on 2023-03-17
+  - [b8bbfaa](https://www.github.com/tauri-apps/tauri-vscode/commit/b8bbfaa524ea27400ac1033028d6e275d6d2f393) fix: downgrade strip-ansi on 2023-03-17
+
 ## \[0.2.2]
 
 - use stripAnsi to remove ansi colors in output
