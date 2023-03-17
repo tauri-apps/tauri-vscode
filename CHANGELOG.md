@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.2.2]
+
+- use stripAnsi to remove ansi colors in output
+  - [2a0af16](https://www.github.com/tauri-apps/tauri-vscode/commit/2a0af165bf83e9001ceb3154706b89cff8605960) fix: use stripAnsi to remove ansi colors in output ([#196](https://www.github.com/tauri-apps/tauri-vscode/pull/196)) on 2023-02-06
+
 ## \[0.2.1]
 
 - Add support for `cargo` as a package manager.
