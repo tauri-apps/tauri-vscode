@@ -19,7 +19,8 @@
   },
   "categories": [
     "Other",
-    "Snippets"
+    "Snippets",
+    "Linters"
   ],
   "keywords": [
     "tauri",
