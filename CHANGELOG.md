@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.2.6]
+
+- Revert multiple deps update.
+  - [731a586](https://www.github.com/tauri-apps/tauri-vscode/commit/731a586be20a9216cdef2474e83f4071cef0b0ed) revet: revert multiple deps update on 2023-03-17
+
 ## \[0.2.2]
 
 - use stripAnsi to remove ansi colors in output
