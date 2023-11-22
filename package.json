@@ -118,7 +118,7 @@
   "dependencies": {
     "@types/semver": "^7.3.12",
     "axios": "^1.0.0",
-    "glob": "8.1.0",
+    "glob": "10.3.10",
     "run-in-terminal": "^0.0.3",
     "strip-ansi": "^6.0.1"
   },
