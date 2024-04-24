@@ -160,7 +160,7 @@ function runTauriInit(): void {
       let onInstall = () => {};
       if (__isVueCliApp(projectPath)) {
         installCommand = 'vue add tauri';
-      } else {
+      } else if (__isNodeProject(projectPath)) {
         installCommand = __usePnpm(projectPath)
           ? 'pnpm add -D @tauri-apps/cli'
           : __useYarn(projectPath)
@@ -185,6 +185,8 @@ function runTauriInit(): void {
             noOutputWindow: true,
           });
         };
+      } else {
+        installCommand = 'cargo install tauri-cli';
       }
 
       const [command, ...args] = installCommand.split(' ');
@@ -196,7 +198,7 @@ function runTauriInit(): void {
     () => {
       const paths = __getNpmProjectsPaths();
       return paths.filter((p) => {
-        return !fs.existsSync(path.join(p, 'src-tauri'));
+        return fs.existsSync(path.join(p, 'src-tauri'));
       });
     }
   );
@@ -223,6 +225,10 @@ function runTauriBuildDebug(): void {
 function __isVueCliApp(cwd: string): boolean {
   const packageJson = __getPackageJson(cwd);
   return '@vue/cli-service' in (packageJson?.devDependencies ?? {});
+}
+
+function __isNodeProject(cwd: string): boolean {
+  return existsSync(join(cwd, 'package.json'));
 }
 
 interface PackageJson {
@@ -418,7 +424,7 @@ function __getPackageManagerCommand(projectPath: string): string | null {
 
   if (!m) {
     vscode.window.showErrorMessage(
-      "Couldn't detect package manager for current project."
+      "Couldn't detect package manager for current project. Try running Tauri: Init Command"
     );
   }
 
