@@ -1,5 +1,9 @@
 # Changelog
 
+## \[0.2.7]
+
+- [`8f41ede`](https://www.github.com/tauri-apps/tauri-vscode/commit/8f41ede1cda26ed88fe570d3030435773ae24dde)([#242](https://www.github.com/tauri-apps/tauri-vscode/pull/242)) Install `cargo tauri` if not installed.
+
 ## \[0.2.6]
 
 - Revert multiple deps update.
