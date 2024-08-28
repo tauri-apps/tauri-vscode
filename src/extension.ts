@@ -67,14 +67,19 @@ function registerSchemasHandler(context: vscode.ExtensionContext) {
           // get schema form local file in node_modules
           const schemaFile = (
             await vscode.workspace.findFiles(
-              '**/node_modules/@tauri-apps/cli/schema.json'
+              '**/node_modules/@tauri-apps/cli/{schema.json,config.schema.json}'
             )
           )[0]
+
           if (schemaFile) return readFileSync(schemaFile.fsPath, 'utf-8')
 
           async function getSchemaFromRelease(version: string) {
+            const filename = version.startsWith('1')
+              ? 'schema.json'
+              : 'config.schema.json'
+
             const res = await axios.get(
-              `https://github.com/tauri-apps/tauri/releases/download/tauri-build-v${version}/schema.json`
+              `https://github.com/tauri-apps/tauri/releases/download/tauri-build-v${version}/${filename}`
             )
             return res.status == 200 ? JSON.stringify(res.data) : null
           }
