@@ -13,6 +13,9 @@ jobs:
   version-or-publish:
     runs-on: ubuntu-latest
 
+    permissions:
+        actions: write # required for workflow_dispatch
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -44,7 +47,6 @@ jobs:
         if: |
           steps.covector.outputs.successfulPublish == 'true' &&
           contains(steps.covector.outputs.packagesPublished, 'tauri-vscode')
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.ORG_TAURI_BOT_PAT }}
-          event-type: publish
+        run: gh workflow run 1813401 -r dev
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
