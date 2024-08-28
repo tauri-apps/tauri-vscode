@@ -31,8 +31,8 @@ importers:
         specifier: 3.3.2
         version: 3.3.2
       typescript:
-        specifier: 5.5.2
-        version: 5.5.2
+        specifier: 5.5.4
+        version: 5.5.4
 
 packages:
 
@@ -205,8 +205,8 @@ packages:
     resolution: {integrity: sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==}
     engines: {node: '>=12'}
 
-  typescript@5.5.2:
-    resolution: {integrity: sha512-NcRtPEOsPFFWjobJEtfihkLCZCXZt/os3zf8nTxjVH3RvTSxjrCamJpbExGvYOF+tFHc3pA65qpdwPbzjohhew==}
+  typescript@5.5.4:
+    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -382,7 +382,7 @@ snapshots:
     dependencies:
       ansi-regex: 6.0.1
 
-  typescript@5.5.2: {}
+  typescript@5.5.4: {}
 
   undici-types@5.26.5: {}
 
