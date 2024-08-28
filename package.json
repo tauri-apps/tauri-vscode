@@ -98,5 +98,5 @@
     "prettier": "3.3.2",
     "typescript": "5.5.2"
   },
-  "packageManager": "pnpm@9.7.1"
+  "packageManager": "pnpm@9.9.0"
 }
