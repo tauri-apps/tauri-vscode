@@ -12,4 +12,4 @@ The extension automatically pulls the [latest config schema](https://github.com/
 
 # Contributing
 
-Following [the official guide](https://code.visualstudio.com/api/get-started/your-first-extension), run `yarn` to install dependencies, `yarn compile` to build your changes and press `F5` to open a new `Extension Development Host` window.
+Following [the official guide](https://code.visualstudio.com/api/get-started/your-first-extension), run `pnpm i` to install dependencies, `pnpm compile` to build your changes and press `F5` to open a new `Extension Development Host` window.

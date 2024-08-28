@@ -81,7 +81,7 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "yarn run compile",
+    "vscode:prepublish": "pnpm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "format": "prettier ./**/*.{json,ts,js} -w --ignore-path .gitignore"
@@ -97,5 +97,6 @@
     "@types/vscode": "1.75.0",
     "prettier": "3.3.2",
     "typescript": "5.5.2"
-  }
+  },
+  "packageManager": "pnpm@9.7.1"
 }

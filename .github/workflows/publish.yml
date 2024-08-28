@@ -14,19 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - run: corepack enable
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: 'yarn'
-      - run: yarn
+          node-version: 20
+          cache: 'pnpm'
+      - run: pnpm i
       - name: Publish to Open VSX Registry
         uses: HaaLeo/publish-vscode-extension@v1
         with:
           pat: ${{ secrets.OPEN_VSX_TOKEN }}
-          yarn: true
+          dependencies: false
       - name: Publish to Visual Studio Marketplace
         uses: HaaLeo/publish-vscode-extension@v1
         with:
           pat: ${{ secrets.VSCE_TOKEN }}
           registryUrl: https://marketplace.visualstudio.com
-          yarn: true
+          dependencies: false
