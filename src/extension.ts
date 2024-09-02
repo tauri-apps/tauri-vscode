@@ -5,14 +5,11 @@
 import * as vscode from 'vscode'
 import { exec, execSync, ChildProcess } from 'child_process'
 import { runInTerminal } from 'run-in-terminal'
-import { join } from 'path'
-import { existsSync, readFileSync } from 'fs'
+import * as path from 'path'
+import * as fs from 'fs'
 import axios from 'axios'
-
-const stripAnsi = require('strip-ansi')
-const glob = require('glob')
-const path = require('path')
-const fs = require('fs')
+import stripAnsi from 'strip-ansi'
+import { glob } from 'glob'
 
 interface Process {
   process: ChildProcess
@@ -71,7 +68,7 @@ function registerSchemasHandler(context: vscode.ExtensionContext) {
             )
           )[0]
 
-          if (schemaFile) return readFileSync(schemaFile.fsPath, 'utf-8')
+          if (schemaFile) return fs.readFileSync(schemaFile.fsPath, 'utf-8')
 
           async function getSchemaFromRelease(version: string) {
             const filename = version.startsWith('1')
@@ -89,7 +86,7 @@ function registerSchemasHandler(context: vscode.ExtensionContext) {
             await vscode.workspace.findFiles('**/Cargo.lock')
           )[0]
           if (cargoLockPath) {
-            const cargoLock = readFileSync(cargoLockPath.fsPath, 'utf-8')
+            const cargoLock = fs.readFileSync(cargoLockPath.fsPath, 'utf-8')
             const matches =
               /\[\[package\]\]\nname = "tauri-build"\nversion = "(.*)"/g.exec(
                 cargoLock
@@ -105,7 +102,7 @@ function registerSchemasHandler(context: vscode.ExtensionContext) {
             await vscode.workspace.findFiles('**/Cargo.toml')
           )[0]
           if (cargoTomlPath) {
-            const cargoToml = readFileSync(cargoTomlPath.fsPath, 'utf-8')
+            const cargoToml = fs.readFileSync(cargoTomlPath.fsPath, 'utf-8')
 
             for (const regex of [
               // specifying a dependency in Cargo.toml can be done in 4 ways
@@ -172,7 +169,7 @@ function runTauriInit(): void {
             : `${__getNpmBin()} install @tauri-apps/cli --save-dev`
         onInstall = () => {
           const packageJson = JSON.parse(
-            fs.readFileSync(`${projectPath}/package.json`)
+            fs.readFileSync(`${projectPath}/package.json`, 'utf8')
           )
           if (!packageJson.scripts) {
             packageJson.scripts = {}
@@ -232,7 +229,7 @@ function __isVueCliApp(cwd: string): boolean {
 }
 
 function __isNodeProject(cwd: string): boolean {
-  return existsSync(join(cwd, 'package.json'))
+  return fs.existsSync(path.join(cwd, 'package.json'))
 }
 
 interface PackageJson {
@@ -244,10 +241,10 @@ interface PackageJson {
   }
 }
 
-function __getPackageJson(path: string): PackageJson | null {
-  const packagePath = join(path, 'package.json')
-  if (existsSync(packagePath)) {
-    const packageStr = readFileSync(packagePath).toString()
+function __getPackageJson(packageJsonPath: string): PackageJson | null {
+  const packagePath = path.join(packageJsonPath, 'package.json')
+  if (fs.existsSync(packageJsonPath)) {
+    const packageStr = fs.readFileSync(packageJsonPath).toString()
     return JSON.parse(packageStr) as PackageJson
   } else {
     return null

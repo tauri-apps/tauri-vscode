@@ -38,7 +38,7 @@
     "workspaceContains:**/tauri.*.conf.json5",
     "onFileSystem:tauri"
   ],
-  "main": "./out/extension.js",
+  "main": "./dist/extension.js",
   "contributes": {
     "jsonValidation": [
       {
@@ -82,20 +82,19 @@
   },
   "scripts": {
     "vscode:prepublish": "pnpm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "compile": "tsup src/extension.ts --clean --format cjs --external vscode",
+    "watch": "pnpm run compile --watch",
     "format": "prettier ./**/*.{json,ts,js} -w --ignore-path .gitignore"
   },
-  "dependencies": {
+  "devDependencies": {
     "axios": "1.7.7",
     "glob": "11.0.0",
     "run-in-terminal": "0.0.3",
-    "strip-ansi": "7.1.0"
-  },
-  "devDependencies": {
+    "strip-ansi": "7.1.0",
     "@types/node": "18.19.31",
     "@types/vscode": "1.75.0",
     "prettier": "3.3.3",
+    "tsup": "^8.2.4",
     "typescript": "5.5.4"
   },
   "packageManager": "pnpm@9.9.0"
