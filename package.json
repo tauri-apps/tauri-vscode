@@ -88,7 +88,7 @@
   },
   "dependencies": {
     "axios": "1.7.7",
-    "glob": "10.4.5",
+    "glob": "11.0.0",
     "run-in-terminal": "0.0.3",
     "strip-ansi": "6.0.1"
   },
