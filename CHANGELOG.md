@@ -1,5 +1,9 @@
 # Changelog
 
+## \[0.2.8]
+
+- [`c64d572`](https://www.github.com/tauri-apps/tauri-vscode/commit/c64d572c1cb7fa5993aff5a9302459d0ab21ee02) ([#268](https://www.github.com/tauri-apps/tauri-vscode/pull/268)) Fix extension failing to active due missing dependencies
+
 ## \[0.2.7]
 
 - [`8f41ede`](https://www.github.com/tauri-apps/tauri-vscode/commit/8f41ede1cda26ed88fe570d3030435773ae24dde) ([#242](https://www.github.com/tauri-apps/tauri-vscode/pull/242)) Install `cargo tauri` if not installed.
