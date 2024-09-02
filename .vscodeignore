@@ -4,10 +4,14 @@
 
 .vscode/**
 .vscode-test/**
-out/test/**
+dist/test/**
 src/**
 .gitignore
 vsc-extension-quickstart.md
 **/tsconfig.json
 **/*.map
 **/*.ts
+.changes
+.github
+renovate.json
+.prettierrc
