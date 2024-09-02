@@ -7,19 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      axios:
-        specifier: 1.7.7
-        version: 1.7.7
-      glob:
-        specifier: 11.0.0
-        version: 11.0.0
-      run-in-terminal:
-        specifier: 0.0.3
-        version: 0.0.3
-      strip-ansi:
-        specifier: 7.1.0
-        version: 7.1.0
     devDependencies:
       '@types/node':
         specifier: 18.19.31
@@ -27,9 +14,21 @@ importers:
       '@types/vscode':
         specifier: 1.75.0
         version: 1.75.0
+      axios:
+        specifier: 1.7.7
+        version: 1.7.7
+      glob:
+        specifier: 11.0.0
+        version: 11.0.0
       prettier:
         specifier: 3.3.3
         version: 3.3.3
+      run-in-terminal:
+        specifier: 0.0.3
+        version: 0.0.3
+      strip-ansi:
+        specifier: 7.1.0
+        version: 7.1.0
       tsup:
         specifier: ^8.2.4
         version: 8.2.4(typescript@5.5.4)
