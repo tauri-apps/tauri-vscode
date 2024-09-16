@@ -1,5 +1,9 @@
 # Changelog
 
+## \[0.2.9]
+
+- [`53b84b4`](https://www.github.com/tauri-apps/tauri-vscode/commit/53b84b4dc2029313a718d1919c78f82da0329783) ([#273](https://www.github.com/tauri-apps/tauri-vscode/pull/273)) Fix extensions commands not working with `EISDIR` error.
+
 ## \[0.2.8]
 
 - [`c64d572`](https://www.github.com/tauri-apps/tauri-vscode/commit/c64d572c1cb7fa5993aff5a9302459d0ab21ee02) ([#268](https://www.github.com/tauri-apps/tauri-vscode/pull/268)) Fix extension failing to active due missing dependencies
