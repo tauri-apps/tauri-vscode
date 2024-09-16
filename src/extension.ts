@@ -241,11 +241,11 @@ interface PackageJson {
   }
 }
 
-function __getPackageJson(packageJsonPath: string): PackageJson | null {
-  const packagePath = path.join(packageJsonPath, 'package.json')
+function __getPackageJson(appDir: string): PackageJson | null {
+  const packageJsonPath = path.join(appDir, 'package.json')
   if (fs.existsSync(packageJsonPath)) {
-    const packageStr = fs.readFileSync(packageJsonPath).toString()
-    return JSON.parse(packageStr) as PackageJson
+    const packageJsonStr = fs.readFileSync(packageJsonPath).toString()
+    return JSON.parse(packageJsonStr) as PackageJson
   } else {
     return null
   }
