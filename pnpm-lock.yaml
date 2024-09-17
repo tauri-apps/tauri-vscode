@@ -31,10 +31,10 @@ importers:
         version: 7.1.0
       tsup:
         specifier: ^8.2.4
-        version: 8.3.0(typescript@5.5.4)
+        version: 8.3.0(typescript@5.6.2)
       typescript:
-        specifier: 5.5.4
-        version: 5.5.4
+        specifier: 5.6.2
+        version: 5.6.2
 
 packages:
 
@@ -735,8 +735,8 @@ packages:
       typescript:
         optional: true
 
-  typescript@5.5.4:
-    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
+  typescript@5.6.2:
+    resolution: {integrity: sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -1317,7 +1317,7 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  tsup@8.3.0(typescript@5.5.4):
+  tsup@8.3.0(typescript@5.6.2):
     dependencies:
       bundle-require: 5.0.0(esbuild@0.23.1)
       cac: 6.7.14
@@ -1336,14 +1336,14 @@ snapshots:
       tinyglobby: 0.2.6
       tree-kill: 1.2.2
     optionalDependencies:
-      typescript: 5.5.4
+      typescript: 5.6.2
     transitivePeerDependencies:
       - jiti
       - supports-color
       - tsx
       - yaml
 
-  typescript@5.5.4: {}
+  typescript@5.6.2: {}
 
   undici-types@5.26.5: {}
 
