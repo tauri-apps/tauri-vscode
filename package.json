@@ -91,7 +91,7 @@
     "glob": "11.0.0",
     "run-in-terminal": "0.0.3",
     "strip-ansi": "7.1.0",
-    "@types/node": "18.19.48",
+    "@types/node": "18.19.59",
     "@types/vscode": "1.75.0",
     "prettier": "3.3.3",
     "tsup": "^8.2.4",
