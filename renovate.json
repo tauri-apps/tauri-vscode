@@ -1,3 +1,18 @@
 {
-  "extends": ["config:base"]
+  "extends": ["config:recommended"],
+  "rangeStrategy": "replace",
+  "packageRules": [
+    {
+      "matchPackageNames": ["*"],
+      "semanticCommitType": "chore",
+      "minimumReleaseAge": "3 days"
+    },
+    {
+      "description": "Disable node/pnpm version updates",
+      "matchPackageNames": ["node", "pnpm"],
+      "matchDepTypes": ["engines", "packageManager"],
+      "enabled": false
+    }
+  ],
+  "postUpdateOptions": ["pnpmDedupe"]
 }
