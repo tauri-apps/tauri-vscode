@@ -87,7 +87,7 @@
     "format": "prettier ./**/*.{json,ts,js} -w --ignore-path .gitignore"
   },
   "devDependencies": {
-    "axios": "1.7.7",
+    "axios": "1.12.0",
     "glob": "11.0.0",
     "run-in-terminal": "0.0.3",
     "strip-ansi": "7.1.0",
