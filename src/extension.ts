@@ -199,7 +199,7 @@ function runTauriInit(): void {
     () => {
       const paths = __getNpmProjectsPaths()
       return paths.filter((p) => {
-        return fs.existsSync(path.join(p, 'src-tauri'))
+        return !fs.existsSync(path.join(p, 'src-tauri'))
       })
     }
   )
