@@ -90,7 +90,7 @@
     "axios": "1.13.2",
     "glob": "11.1.0",
     "run-in-terminal": "0.0.3",
-    "strip-ansi": "7.1.2",
+    "strip-ansi": "7.2.0",
     "@types/node": "18.19.127",
     "@types/vscode": "1.75.0",
     "prettier": "3.3.3",
