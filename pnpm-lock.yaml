@@ -21,8 +21,8 @@ importers:
         specifier: 11.1.0
         version: 11.1.0
       prettier:
-        specifier: 3.3.3
-        version: 3.3.3
+        specifier: 3.9.10
+        version: 3.9.10
       run-in-terminal:
         specifier: 0.0.3
         version: 0.0.3
@@ -692,8 +692,8 @@ packages:
       yaml:
         optional: true
 
-  prettier@3.3.3:
-    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
+  prettier@3.9.10:
+    resolution: {integrity: sha512-skGHTH1Yb9QvaTC4hWnRTzEYtCpApF0UMBPz+t/0ZPzP8ihefo/btKd+QA7pUE0fEwA1SbS/NmhyEcstdXOIdA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -1366,7 +1366,7 @@ snapshots:
     dependencies:
       lilconfig: 3.1.2
 
-  prettier@3.3.3: {}
+  prettier@3.9.10: {}
 
   proxy-from-env@2.1.0: {}
 
