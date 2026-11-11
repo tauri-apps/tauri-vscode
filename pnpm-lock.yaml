@@ -12,8 +12,8 @@ importers:
         specifier: 18.19.127
         version: 18.19.127
       '@types/vscode':
-        specifier: 1.75.0
-        version: 1.75.0
+        specifier: 1.145.0
+        version: 1.145.0
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -302,8 +302,8 @@ packages:
   '@types/node@18.19.127':
     resolution: {integrity: sha512-gSjxjrnKXML/yo0BO099uPixMqfpJU0TKYjpfLU7TrtA2WWDki412Np/RSTPRil1saKBhvVVKzVx/p/6p94nVA==}
 
-  '@types/vscode@1.75.0':
-    resolution: {integrity: sha512-SAr0PoOhJS6FUq5LjNr8C/StBKALZwDVm3+U4pjF/3iYkt3GioJOPV/oB1Sf1l7lROe4TgrMyL5N1yaEgTWycw==}
+  '@types/vscode@1.145.0':
+    resolution: {integrity: sha512-mADZK4SF/j1n0+Qk4bH8NT1qTQGYDAsbhb5hStbzuB3hKP3mRH7xja5yUaIm7ExCh65Ff+C9XGwxcBvSlTCvkQ==}
 
   agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
@@ -1000,7 +1000,7 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
-  '@types/vscode@1.75.0': {}
+  '@types/vscode@1.145.0': {}
 
   agent-base@6.0.2:
     dependencies:
