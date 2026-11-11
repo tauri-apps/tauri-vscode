@@ -88,7 +88,7 @@
   },
   "devDependencies": {
     "axios": "1.20.0",
-    "glob": "11.1.0",
+    "glob": "14.0.4",
     "run-in-terminal": "0.0.3",
     "strip-ansi": "7.1.2",
     "@types/node": "18.19.127",
